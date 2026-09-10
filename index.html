@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Brélie — Coming soon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brelie-blue: #3D5A99;
+    --bg: #F7F5F1;
+    --muted: #6B7A99;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    background: var(--bg);
+    font-family: 'Jost', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .logo-corner {
+    position: absolute;
+    top: 28px;
+    left: 28px;
+  }
+
+  .logo-corner img {
+    width: 56px;
+    height: auto;
+    display: block;
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+  }
+
+  .brand {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--brelie-blue);
+    font-size: clamp(3rem, 9vw, 5.5rem);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .tagline {
+    margin: 14px 0 0;
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  @media (max-width: 480px) {
+    .logo-corner {
+      top: 18px;
+      left: 18px;
+    }
+    .logo-corner img {
+      width: 42px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="logo-corner">
+    <img src="dlb-seal.png" alt="La Brélie seal">
+  </div>
+
+  <main>
+    <div>
+      <p class="brand">La Brélie</p>
+      <p class="tagline">Coming soon</p>
+    </div>
+  </main>
+
+  <footer>© 2026 La Brélie</footer>
+
+</body>
+</html>
