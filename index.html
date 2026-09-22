@@ -198,21 +198,15 @@
     const input = document.getElementById("gate-passcode");
     const message = document.getElementById("gate-message");
 
-    function showGranted() {
-      message.textContent = "Access granted — preview coming soon.";
-      message.className = "gate-message success";
-      form.style.display = "none";
-    }
-
     if (localStorage.getItem(STORAGE_KEY) === "true") {
-      showGranted();
+      window.location.href = "preview.html";
     }
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (input.value === PASSCODE) {
         localStorage.setItem(STORAGE_KEY, "true");
-        showGranted();
+        window.location.href = "preview.html";
       } else {
         message.textContent = "Incorrect passcode.";
         message.className = "gate-message error";
