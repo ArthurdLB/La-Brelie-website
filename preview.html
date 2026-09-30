@@ -56,8 +56,15 @@
 
   .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 22px; }
   .gallery-grid figure { margin: 0; }
-  .gallery-img { aspect-ratio: 4/3; border-radius: 2px; overflow: hidden; }
+  .gallery-img { aspect-ratio: 4/3; border-radius: 2px; overflow: hidden; cursor: zoom-in; }
   .gallery-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .lightbox { position: fixed; inset: 0; background: rgba(20,22,26,.92); display: none; align-items: center; justify-content: center; z-index: 999; padding: 40px 24px; cursor: zoom-out; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 100%; border-radius: 2px; box-shadow: 0 20px 60px rgba(0,0,0,.4); cursor: default; }
+  .lightbox-close { position: absolute; top: 22px; right: 28px; width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(255,255,255,.12); color: #fff; font-size: 20px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .lightbox-close:hover { background: rgba(255,255,255,.22); }
+  .lightbox-caption { position: absolute; bottom: 28px; left: 0; right: 0; text-align: center; color: rgba(255,255,255,.8); font-size: 14px; letter-spacing: .03em; }
   figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-top: 12px; }
   figcaption .name { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: #24282F; }
   figcaption .origin { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: #6B7280; white-space: nowrap; }
@@ -68,7 +75,7 @@
   .stories-intro h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 34px; margin: 0 0 14px; color: #24282F; }
   .stories-intro p { font-size: 16px; line-height: 1.65; color: #4B5563; margin: 0; }
   .stories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px; }
-  .stories-grid article img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 2px; display: block; background: #E6E1D9; }
+  .stories-grid article img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 2px; display: block; background: #E6E1D9; cursor: zoom-in; }
   .story-label { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: #3D5A99; font-weight: 600; margin-top: 16px; }
   .story-title { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 22px; line-height: 1.25; margin: 8px 0 8px; color: #24282F; }
   .story-body { font-size: 14px; line-height: 1.6; color: #4B5563; margin: 0; }
@@ -295,6 +302,12 @@
     </div>
   </section>
 
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
   <footer id="contact">
     <div class="footer-top">
       <div>
@@ -340,6 +353,52 @@
   if (localStorage.getItem("labrelie_gate_ok") !== "true") {
     window.location.href = "index.html";
   }
+
+  // Gallery lightbox — click a photo to see it full-size, uncropped
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = document.getElementById("lightbox-img");
+  var lightboxCaption = document.getElementById("lightbox-caption");
+
+  function openLightbox(src, alt, caption) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightboxCaption.textContent = caption;
+    lightbox.classList.add("open");
+  }
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    lightboxImg.src = "";
+  }
+
+  document.querySelectorAll(".gallery-img").forEach(function (box) {
+    var img = box.querySelector("img");
+    if (!img) return; // skip the placeholder "dish photo" tile
+    box.addEventListener("click", function () {
+      var figure = box.closest("figure");
+      var name = figure ? figure.querySelector(".name") : null;
+      var origin = figure ? figure.querySelector(".origin") : null;
+      var caption = (name ? name.textContent : "") + (origin ? " — " + origin.textContent : "");
+      openLightbox(img.src, img.alt, caption);
+    });
+  });
+
+  document.querySelectorAll(".stories-grid article img").forEach(function (img) {
+    img.addEventListener("click", function () {
+      var article = img.closest("article");
+      var label = article ? article.querySelector(".story-label") : null;
+      var title = article ? article.querySelector(".story-title") : null;
+      var caption = (label ? label.textContent : "") + (title ? " — " + title.textContent : "");
+      openLightbox(img.src, img.alt, caption);
+    });
+  });
+
+  document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", function (e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeLightbox();
+  });
 
   // FAQ accordion
   document.querySelectorAll(".faq-item").forEach(function (item) {
