@@ -42,9 +42,9 @@
   .btn-secondary { background: transparent; color: #3D5A99; border: 1.5px solid #3D5A99; }
   .btn-secondary:hover { background: rgba(61,90,153,.07); }
   .hero-note { font-size: 12.5px; color: #6B7280; margin: 16px 0 0; letter-spacing: .02em; }
-  .hero-imgs { display: flex; gap: 16px; align-items: flex-end; }
-  .hero-imgs img { flex: 1.35; width: 100%; min-width: 0; height: auto; display: block; border-radius: 2px; box-shadow: 0 2px 4px rgba(36,40,47,.06), 0 18px 40px rgba(36,40,47,.12); }
-  .hero-phone { flex: 1; min-width: 0; }
+  .hero-imgs { display: grid; grid-template-columns: 1.35fr 1fr; gap: 16px; align-items: stretch; }
+  .hero-imgs img { width: 100%; min-width: 0; height: auto; align-self: start; display: block; border-radius: 2px; box-shadow: 0 2px 4px rgba(36,40,47,.06), 0 18px 40px rgba(36,40,47,.12); }
+  .hero-phone { min-width: 0; align-self: start; }
 
   section.block { padding: 100px 24px 0; }
   .block-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px solid #E2DDD4; padding-bottom: 14px; margin-bottom: 36px; }
@@ -53,8 +53,10 @@
 
   .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px; }
   .app-shot-frame { position: relative; aspect-ratio: 9/18.2; border-radius: 38px; background: #F7F5F1; border: 1px solid rgba(36,40,47,.16); box-shadow: 0 2px 4px rgba(36,40,47,.05), 0 14px 30px rgba(36,40,47,.08); display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 24px; }
-  .hero-phone.app-shot-frame { aspect-ratio: 9/18.2; }
-  .hero-phone .phone-tbd { font-size: 23px; }
+  .hero-phone.app-shot-frame { aspect-ratio: 9/18.2; height: auto; max-height: calc((100cqw - 16px) / 2.35 * 1.35 * 1.4152); margin: 0 auto; }
+  .hero-imgs { container-type: inline-size; }
+  .hero-phone .phone-tbd { font-size: clamp(14px, 1.7vw, 21px); }
+  .hero-phone.app-shot-frame { padding: 0 14px; }
   .phone-island { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 31%; height: 22px; background: #0B0C0E; border-radius: 999px; }
   .phone-status { position: absolute; top: 14px; left: 0; right: 0; height: 22px; padding: 0 9%; display: flex; align-items: center; justify-content: space-between; font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 700; color: #24282F; }
   .phone-home { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 34%; height: 5px; border-radius: 999px; background: rgba(36,40,47,.28); }
