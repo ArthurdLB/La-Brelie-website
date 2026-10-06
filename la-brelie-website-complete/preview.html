@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>La Brélie — Recettes de Famille et Saveurs du Monde</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #F7F5F1; font-family: 'Karla', system-ui, sans-serif; color: #24282F; -webkit-font-smoothing: antialiased; }
+  a { color: #3D5A99; text-decoration: none; }
+  a:hover { color: #2C4275; }
+  img { max-width: 100%; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  header { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0; padding: 44px 24px 6px; }
+  .header-brand { display: flex; align-items: center; justify-content: center; gap: 16px; }
+  .header-brand img { width: 54px; height: auto; display: block; }
+  .header-brand span { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 46px; line-height: 1; color: #3D5A99; letter-spacing: .01em; }
+  nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; margin-top: 26px; font-size: 13px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: #4B5563; }
+  nav a { color: inherit; }
+
+
+  .lang-switch { position: absolute; top: 18px; right: 24px; display: flex; align-items: center; gap: 8px; font-size: 12.5px; letter-spacing: .12em; font-weight: 600; color: #C9C4BA; }
+  .lang-switch button { background: none; border: none; padding: 6px 2px; font: inherit; letter-spacing: inherit; color: #8A8F99; cursor: pointer; border-bottom: 1.5px solid transparent; }
+  .lang-switch button:hover { color: #3D5A99; }
+  .lang-switch button[aria-pressed="true"] { color: #3D5A99; border-bottom-color: #3D5A99; }
+  @media (max-width: 480px) { .lang-switch { top: 10px; right: 14px; } }
+
+  .hero { padding: 56px 24px 0; }
+  .hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 56px; align-items: center; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(38px, 5vw, 58px); line-height: 1.08; letter-spacing: -.01em; margin: 0 0 8px; color: #24282F; }
+  .hero .subtitle { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(17px, 2.2vw, 24px); line-height: 1.2; color: #6B7280; margin: 0 0 20px; }
+  .hero p.desc { font-size: 17px; line-height: 1.65; color: #4B5563; max-width: 46ch; margin: 0 0 34px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn-primary, .btn-secondary { display: inline-flex; align-items: center; justify-content: center; padding: 15px 30px; border-radius: 4px; font-size: 14.5px; font-weight: 600; letter-spacing: .02em; min-height: 48px; cursor: pointer; border: none; font-family: 'Karla', sans-serif; }
+  .btn-primary { background: #3D5A99; color: #fff; }
+  .btn-primary:hover { background: #2C4275; }
+  .btn-secondary { background: transparent; color: #3D5A99; border: 1.5px solid #3D5A99; }
+  .btn-secondary:hover { background: rgba(61,90,153,.07); }
+  .hero-note { font-size: 12.5px; color: #6B7280; margin: 16px 0 0; letter-spacing: .02em; }
+  .hero-imgs { display: flex; gap: 16px; align-items: flex-end; }
+  .hero-imgs img:first-child { flex: 1.35; width: 100%; min-width: 0; height: auto; display: block; border-radius: 2px; box-shadow: 0 2px 4px rgba(36,40,47,.06), 0 18px 40px rgba(36,40,47,.12); }
+  .hero-imgs img:last-child { flex: 1; width: 100%; min-width: 0; height: auto; display: block; border-radius: 22px; box-shadow: 0 2px 4px rgba(36,40,47,.06), 0 14px 30px rgba(36,40,47,.1); }
+
+  section.block { padding: 100px 24px 0; }
+  .block-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px solid #E2DDD4; padding-bottom: 14px; margin-bottom: 36px; }
+  .block-head h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 34px; margin: 0; color: #24282F; }
+  .block-head span { font-size: 13px; color: #6B7280; letter-spacing: .03em; }
+
+  .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px; }
+  .app-shot-frame { position: relative; aspect-ratio: 9/18.2; border-radius: 38px; background: #F7F5F1; border: 1px solid rgba(36,40,47,.16); box-shadow: 0 2px 4px rgba(36,40,47,.05), 0 14px 30px rgba(36,40,47,.08); display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 24px; }
+  .phone-island { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 31%; height: 22px; background: #0B0C0E; border-radius: 999px; }
+  .phone-status { position: absolute; top: 14px; left: 0; right: 0; height: 22px; padding: 0 9%; display: flex; align-items: center; justify-content: space-between; font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 700; color: #24282F; }
+  .phone-home { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 34%; height: 5px; border-radius: 999px; background: rgba(36,40,47,.28); }
+  .phone-tbd { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 30px; color: #3D5A99; }
+  .app-shot-meta { display: flex; align-items: baseline; gap: 9px; margin-top: 18px; }
+  .app-shot-meta .num { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #3D5A99; }
+  .app-shot-meta .title { font-family: 'Cormorant Garamond', serif; font-size: 23px; font-weight: 500; color: #24282F; line-height: 1.2; }
+  .app-shot-body { font-size: 13.5px; line-height: 1.6; color: #4B5563; margin: 8px 0 0; }
+  .app-shot-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15.5px; line-height: 1.5; color: #3D5A99; margin: 14px 0 0; padding-left: 12px; border-left: 2px solid rgba(61,90,153,.3); }
+  .app-shot-warn { font-size: 12px; line-height: 1.5; color: #7A5A20; background: #F3EAD6; border-radius: 3px; padding: 10px 12px; margin: 14px 0 0; }
+
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 22px; }
+  .gallery-grid figure { margin: 0; }
+  .gallery-img { aspect-ratio: 4/3; border-radius: 2px; overflow: hidden; cursor: zoom-in; }
+  .gallery-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .lightbox { position: fixed; inset: 0; background: #101216; display: none; flex-direction: row; align-items: center; justify-content: center; gap: 44px; z-index: 999; padding: 28px 32px; cursor: zoom-out; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: calc(100vw - 480px); max-height: calc(100vh - 56px); width: auto; height: auto; object-fit: contain; border-radius: 2px; box-shadow: 0 20px 60px rgba(0,0,0,.45); cursor: default; flex: none; }
+  .lightbox-caption { flex: 0 1 300px; text-align: right; pointer-events: none; }
+  .lightbox-caption:empty { display: none; }
+  .lb-eyebrow { display: block; font-family: 'Karla', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.65); margin-bottom: 14px; }
+  .lb-title { display: block; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 46px; line-height: 1.1; color: #fff; }
+  .lightbox-close { position: absolute; top: 22px; right: 28px; width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255,255,255,.14); color: #fff; font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .lightbox-close:hover { background: rgba(255,255,255,.26); }
+  @media (max-width: 760px) {
+    .lightbox { flex-direction: column-reverse; gap: 16px; padding: 64px 16px 20px; }
+    .lightbox img { max-width: 94vw; max-height: calc(100vh - 190px); }
+    .lightbox-caption { flex: none; text-align: center; }
+    .lb-title { font-size: 32px; }
+  }
+  figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-top: 12px; }
+  figcaption .name { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: #24282F; }
+  figcaption .origin { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: #6B7280; white-space: nowrap; }
+
+  .stories-section { margin-top: 100px; background: #EFEBE4; border-top: 1px solid #E2DDD4; border-bottom: 1px solid #E2DDD4; }
+  .stories-inner { padding: 76px 24px; }
+  .stories-intro { max-width: 60ch; margin-bottom: 44px; }
+  .stories-intro h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 34px; margin: 0 0 14px; color: #24282F; }
+  .stories-intro p { font-size: 16px; line-height: 1.65; color: #4B5563; margin: 0; }
+  .stories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px; }
+  .stories-grid article img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 2px; display: block; background: #E6E1D9; cursor: zoom-in; }
+  .story-label { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: #3D5A99; font-weight: 600; margin-top: 16px; }
+  .story-title { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 22px; line-height: 1.25; margin: 8px 0 8px; color: #24282F; }
+  .story-body { font-size: 14px; line-height: 1.6; color: #4B5563; margin: 0; }
+  .stories-link { margin: 44px 0 0; font-size: 15px; }
+  .stories-link a { border-bottom: 1px solid rgba(61,90,153,.35); padding-bottom: 2px; }
+
+  .faq-list { display: flex; flex-direction: column; border-top: 1px solid #E2DDD4; }
+  .faq-item { border-bottom: 1px solid #E2DDD4; }
+  .faq-q { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; background: none; border: none; padding: 20px 2px; cursor: pointer; text-align: left; font-family: 'Karla', sans-serif; font-size: 16px; font-weight: 600; color: #24282F; min-height: 48px; }
+  .faq-q .sign { font-size: 20px; font-weight: 400; color: #3D5A99; line-height: 1; flex: none; }
+  .faq-a { font-size: 15px; line-height: 1.65; color: #4B5563; margin: 0; padding: 0 2px 22px; max-width: 62ch; display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  .newsletter-wrap { max-width: 820px; margin: 0 auto; padding: 88px 24px 0; }
+  .newsletter-card { background: #3D5A99; color: #fff; border-radius: 4px; padding: clamp(32px, 5vw, 52px); }
+  .newsletter-card h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 30px; margin: 0 0 10px; color: #fff; }
+  .newsletter-card p { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,.85); margin: 0 0 26px; max-width: 52ch; }
+
+  footer { max-width: 1100px; margin: 96px auto 0; padding: 0 24px 56px; }
+  .footer-top { border-top: 1px solid #E2DDD4; padding-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 32px; }
+  .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .footer-brand img { width: 26px; height: auto; display: block; }
+  .footer-brand span { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #3D5A99; }
+  .footer-col-title { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: #24282F; font-weight: 600; margin-bottom: 12px; }
+  .footer-links { display: flex; flex-direction: column; gap: 7px; font-size: 13.5px; }
+  .footer-bottom { margin-top: 36px; font-size: 12px; color: #8A8F99; }
+</style>
+</head>
+<body>
+
+<div>
+
+  <header>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <span aria-hidden="true">|</span>
+      <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+    </div>
+    <div class="header-brand">
+      <img src="assets/logo-dlb-blue.png" alt="dLB">
+      <span>La Brélie</span>
+    </div>
+    <nav>
+      <a href="#livre" data-i18n="nav.book">The Book</a>
+      <a href="#galerie" data-i18n="nav.gallery">Gallery</a>
+      <a href="#stories" data-i18n="nav.stories">Stories</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="livre" class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <h1>Recettes de Famille<br>et Saveurs du Monde</h1>
+        <p class="subtitle">Family Recipes and Flavours of the World</p>
+        <p class="desc" data-i18n="hero.desc">A culinary heritage book. Discover <strong style="font-weight:600;color:#24282F;">365 tested recipes</strong> by Thierry and Arthur, brought to life by the intelligent app.</p>
+        <div class="cta-row">
+          <a href="#" class="btn-primary" data-i18n="hero.buy">Buy the Book</a>
+          <a href="#app" class="btn-secondary" data-i18n="hero.download">Download the App</a>
+        </div>
+        <p class="hero-note" data-i18n="hero.note">iOS · Android · Premium hardcover edition</p>
+      </div>
+      <div class="hero-imgs">
+        <img id="book-cover" width="1309" height="1852" data-src-en="assets/couverture-livre-en.png" data-src-fr="assets/couverture-livre-fr.png" alt="La Brélie book cover — Family Recipes and Flavours of the World" data-i18n-alt="hero.cover.alt">
+        <img src="assets/app-accueil-v2.png" alt="The La Brélie app — home screen" data-i18n-alt="hero.app.alt">
+      </div>
+    </div>
+  </section>
+
+  <section id="app" class="block wrap">
+    <div class="block-head">
+      <h2 data-i18n="app.title">The app in action</h2>
+      <span data-i18n="app.sub">Fridge scan · Menu generator · Substitutions</span>
+    </div>
+    <div class="app-grid">
+
+      <div>
+        <div class="app-shot-frame">
+          <div class="phone-status"><span>9:41</span><svg width="52" height="12" viewBox="0 0 52 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="#24282F"/><rect x="5" y="5" width="3" height="7" rx="1" fill="#24282F"/><rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="#24282F"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#24282F"/><rect x="25" y="0.5" width="24" height="11" rx="3.2" fill="none" stroke="#24282F" stroke-opacity=".45"/><rect x="27" y="2.5" width="20" height="7" rx="2" fill="#24282F"/><rect x="50" y="4" width="2" height="4" rx="1" fill="#24282F" fill-opacity=".45"/></svg></div>
+          <div class="phone-island"></div>
+          <div class="phone-tbd" data-i18n="phone.tbd">To be defined</div>
+          <div class="phone-home"></div>
+        </div>
+        <div class="app-shot-meta"><span class="num">01</span><span class="title" data-i18n="app1.title">Fridge Scan</span></div>
+        <p class="app-shot-body" data-i18n="app1.body">A quick video or photo of the fridge — or a manual selection. The AI recognises the ingredients, asks for confirmation, then suggests the 3 to 5 best recipes from the book you can make tonight.</p>
+        <p class="app-shot-quote" data-i18n="app1.quote">"I don't know what to cook for my kids tonight."</p>
+      </div>
+
+      <div>
+        <div class="app-shot-frame">
+          <div class="phone-status"><span>9:41</span><svg width="52" height="12" viewBox="0 0 52 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="#24282F"/><rect x="5" y="5" width="3" height="7" rx="1" fill="#24282F"/><rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="#24282F"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#24282F"/><rect x="25" y="0.5" width="24" height="11" rx="3.2" fill="none" stroke="#24282F" stroke-opacity=".45"/><rect x="27" y="2.5" width="20" height="7" rx="2" fill="#24282F"/><rect x="50" y="4" width="2" height="4" rx="1" fill="#24282F" fill-opacity=".45"/></svg></div>
+          <div class="phone-island"></div>
+          <div class="phone-tbd" data-i18n="phone.tbd">To be defined</div>
+          <div class="phone-home"></div>
+        </div>
+        <div class="app-shot-meta"><span class="num">02</span><span class="title" data-i18n="app2.title">Menu Generator</span></div>
+        <p class="app-shot-body" data-i18n="app2.body">Five complete menus that account for the occasion, dietary constraints, the season and the harmony of starter, main and dessert. For example: morel tartines → poule au pot → tarte tatin.</p>
+        <p class="app-shot-quote" data-i18n="app2.quote">"I'm hosting three couples on Friday night, one of them halal."</p>
+      </div>
+
+      <div>
+        <div class="app-shot-frame">
+          <div class="phone-status"><span>9:41</span><svg width="52" height="12" viewBox="0 0 52 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="#24282F"/><rect x="5" y="5" width="3" height="7" rx="1" fill="#24282F"/><rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="#24282F"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#24282F"/><rect x="25" y="0.5" width="24" height="11" rx="3.2" fill="none" stroke="#24282F" stroke-opacity=".45"/><rect x="27" y="2.5" width="20" height="7" rx="2" fill="#24282F"/><rect x="50" y="4" width="2" height="4" rx="1" fill="#24282F" fill-opacity=".45"/></svg></div>
+          <div class="phone-island"></div>
+          <div class="phone-tbd" data-i18n="phone.tbd">To be defined</div>
+          <div class="phone-home"></div>
+        </div>
+        <div class="app-shot-meta"><span class="num">03</span><span class="title" data-i18n="app3.title">Ingredient Substitutions</span></div>
+        <p class="app-shot-body" data-i18n="app3.body">Missing an ingredient? The AI suggests a replacement and its ratio — labneh → Greek yoghurt + salt, butter → oil (0.8:1). The book already contains many; the app generates more.</p>
+        <p class="app-shot-quote" data-i18n="app3.quote">"I don't have labneh — what can I use instead?"</p>
+        <p class="app-shot-warn" data-i18n="app3.warn">AI-suggested substitution, not validated by Arthur and Thierry. Test it before relying on it.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="galerie" class="block wrap">
+    <div class="block-head">
+      <h2 data-i18n="gal.title">Gallery</h2>
+      <span data-i18n="gal.sub">Six recipes from the book</span>
+    </div>
+    <div class="gallery-grid">
+
+      <figure>
+        <div class="gallery-img"><img src="assets/fattoush.jpg" alt="Fattoush Salad" data-i18n-alt="gal1.name"></div>
+        <figcaption><span class="name" data-i18n="gal1.name">Fattoush Salad</span><span class="origin" data-i18n="gal1.origin">Lebanon</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="gallery-img"><img src="assets/souffle.jpg" alt="Cheese Soufflé" data-i18n-alt="gal2.name"></div>
+        <figcaption><span class="name" data-i18n="gal2.name">Cheese Soufflé</span><span class="origin" data-i18n="gal2.origin">France</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="gallery-img"><img src="assets/saffron-risotto.jpg" alt="Saffron Risotto" data-i18n-alt="gal3.name"></div>
+        <figcaption><span class="name" data-i18n="gal3.name">Saffron Risotto</span><span class="origin" data-i18n="gal3.origin">Italy</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="gallery-img" style="background-color:#EDE9E2;display:flex;align-items:center;justify-content:center;">
+          <span style="font:500 10.5px/1.3 'Karla',sans-serif;letter-spacing:.04em;text-transform:uppercase;color:#6B7280;" data-i18n="gal.dish">dish photo</span>
+        </div>
+        <figcaption><span class="name" data-i18n="gal4.name">Cumin Lamb Tagine</span><span class="origin" data-i18n="gal4.origin">Morocco</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="gallery-img"><img src="assets/tarte-tatin.jpg" alt="Tarte Tatin" data-i18n-alt="gal5.name"></div>
+        <figcaption><span class="name" data-i18n="gal5.name">Tarte Tatin</span><span class="origin" data-i18n="gal5.origin">Sologne</span></figcaption>
+      </figure>
+
+      <figure>
+        <div class="gallery-img"><img src="assets/strawberry-tart.jpg" alt="Strawberry Tart" data-i18n-alt="gal6.name"></div>
+        <figcaption><span class="name" data-i18n="gal6.name">Strawberry Tart</span><span class="origin" data-i18n="gal6.origin">France</span></figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <section id="stories" class="stories-section">
+    <div class="wrap stories-inner">
+      <div class="stories-intro">
+        <h2 data-i18n="stories.title">Stories</h2>
+        <p data-i18n="stories.intro">Four kitchens, one table. The La Brélie recipes come from notebooks, handwritten cards, gestures passed down and friendships — Mami Belfort, Bonne Maman, Zina, Thierry and Arthur.</p>
+      </div>
+      <div class="stories-grid">
+
+        <article>
+          <img src="assets/story-mami-belfort.jpg" alt="Mami Belfort">
+          <div class="story-label">Mami Belfort</div>
+          <h3 class="story-title" data-i18n="s1.title">The worn notebook</h3>
+          <p class="story-body" data-i18n="s1.body">A notebook with a worn cover, quantities noted "by eye". We measured, tasted, started over.</p>
+        </article>
+
+        <article>
+          <img src="assets/story-bonne-maman.jpg" alt="Bonne Maman">
+          <div class="story-label">Bonne Maman</div>
+          <h3 class="story-title" data-i18n="s2.title">Four cuisines, one table</h3>
+          <p class="story-body" data-i18n="s2.body">The South of France, Brittany, Paris and the Maghreb — recipes that held a table of fifteen without ever faltering.</p>
+        </article>
+
+        <article>
+          <img src="assets/story-zina.jpg" alt="Zina">
+          <div class="story-label">Zina</div>
+          <h3 class="story-title" data-i18n="s3.title">A Lebanese friendship</h3>
+          <p class="story-body" data-i18n="s3.body">These recipes don't come from a trip. They come from a friendship — Zina's — and from a love for her country.</p>
+        </article>
+
+        <article>
+          <img src="assets/thierry-arthur.jpg" alt="Thierry & Arthur">
+          <div class="story-label">Thierry &amp; Arthur</div>
+          <h3 class="story-title" data-i18n="s4.title">Why this book exists</h3>
+          <p class="story-body" data-i18n="s4.body">A love of cooking. And because an unwritten recipe disappears. 365 recipes, tested twice, sometimes ten times.</p>
+        </article>
+
+      </div>
+      <p class="stories-link"><a href="#livre" data-i18n="stories.link">Discover all 365 recipes in the book →</a></p>
+    </div>
+  </section>
+
+  <section id="faq" class="block wrap" style="max-width:820px;">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:34px;margin:0 0 30px;color:#24282F;" data-i18n="faq.title">Frequently asked questions</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="faq1.q">What is La Brélie?</span><span class="sign">+</span></button>
+        <p class="faq-a" data-i18n="faq1.a">A family heritage cookbook paired with an AI app. The book gathers the reference recipes; the app brings them to life day to day: variations, menus, shopping lists and much more.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="faq2.q">How many recipes are in the book?</span><span class="sign">+</span></button>
+        <p class="faq-a" data-i18n="faq2.a">365 recipes, all tried and tested many times by Thierry and Arthur. The foundations of French cooking, enriched with recipes from around the world.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="faq3.q">How does the app work?</span><span class="sign">+</span></button>
+        <p class="faq-a" data-i18n="faq3.a">To be defined.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="faq4.q">Which operating systems are supported?</span><span class="sign">+</span></button>
+        <p class="faq-a" data-i18n="faq4.a">iOS 16 and above, Android 10 and above.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="faq5.q">Where can I buy the book?</span><span class="sign">+</span></button>
+        <p class="faq-a" data-i18n="faq5.a">On Amazon and from partner bookshops.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="newsletter-wrap">
+    <div class="newsletter-card">
+      <h2>Newsletter</h2>
+      <p data-i18n="news.p">News, App launches, recipe spotlights, behind the scenes and much more.</p>
+      <div data-supascribe-embed-id="861370803265" data-supascribe-subscribe></div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <footer id="contact">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <img src="assets/logo-dlb-blue.png" alt="dLB">
+          <span>La Brélie</span>
+        </div>
+        <p style="font-size:13px;line-height:1.6;color:#6B7280;margin:0;" data-i18n="footer.tag">Family recipes and flavours from around the world.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-links">
+          <a href="mailto:arthur@delabrelie.com">arthur@delabrelie.com</a>
+          <a href="mailto:thierry@delabrelie.com">thierry@delabrelie.com</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.follow">Follow</div>
+        <div class="footer-links">
+          <a href="https://www.instagram.com/labrelie_" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://www.tiktok.com/@labrelie_" target="_blank" rel="noopener noreferrer">TikTok</a>
+          <a href="https://delabrelie.substack.com" target="_blank" rel="noopener noreferrer">Substack</a>
+          <a href="https://www.linkedin.com/company/la-br%C3%A9lie/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.legal">Legal</div>
+        <div class="footer-links">
+          <a href="terms-and-conditions.html" data-i18n="footer.terms">Terms &amp; Conditions</a>
+          <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="legal-notice.html" data-i18n="footer.notice">Legal Notice</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom" data-i18n="footer.copy">© 2026 La Brélie — All rights reserved.</div>
+  </footer>
+
+</div>
+
+<script>
+  // Passcode gate check — if this page is opened directly without the
+  // correct passcode entered on index.html, bounce back to the gate.
+  if (localStorage.getItem("labrelie_gate_ok") !== "true") {
+    window.location.href = "index.html";
+  }
+
+  // ---------- Language: English / French ----------
+  // The English text lives in the page itself; the French is below.
+  // The main title (French line + English line) is intentionally not
+  // translated, so it stays identical in both languages.
+  var FR = {
+  "nav.book": "Le livre",
+  "nav.gallery": "Galerie",
+  "nav.stories": "Histoires",
+  "nav.faq": "FAQ",
+  "nav.contact": "Contact",
+  "hero.desc": "Un livre de patrimoine culinaire. Découvrez <strong style=\"font-weight:600;color:#24282F;\">365 recettes testées</strong> par Thierry et Arthur, qui prennent vie grâce à l'application intelligente.",
+  "hero.buy": "Acheter le livre",
+  "hero.download": "Télécharger l'application",
+  "hero.note": "iOS · Android · Édition premium reliée",
+  "hero.cover.alt": "Couverture du livre La Brélie — Recettes de Famille et Saveurs du Monde",
+  "hero.app.alt": "L'application La Brélie — écran d'accueil",
+  "app.title": "L'application en action",
+  "app.sub": "Scan du frigo · Générateur de menus · Substitutions",
+  "app1.title": "Scan du frigo",
+  "app1.body": "Une courte vidéo ou une photo du frigo, ou une sélection manuelle. L'IA reconnaît les ingrédients, demande confirmation, puis propose les 3 à 5 meilleures recettes du livre que vous pouvez préparer ce soir.",
+  "app1.quote": "«&nbsp;Je ne sais pas quoi cuisiner ce soir pour mes enfants.&nbsp;»",
+    "app2.title": "Générateur de menus",
+  "app2.body": "Cinq menus complets qui tiennent compte de l'occasion, des contraintes alimentaires, de la saison et de l'harmonie entre l'entrée, le plat et le dessert. Par exemple&nbsp;: tartines aux morilles → poule au pot → tarte Tatin.",
+  "app2.quote": "«&nbsp;Je reçois trois couples vendredi soir, dont l'un mange halal.&nbsp;»",
+    "app3.title": "Substitutions d'ingrédients",
+  "app3.body": "Il vous manque un ingrédient&nbsp;? L'IA propose un remplacement et sa proportion&nbsp;: labneh → yaourt grec + sel, beurre → huile (0,8&nbsp;:&nbsp;1). Le livre en contient déjà beaucoup&nbsp;; l'application en génère d'autres.",
+  "app3.quote": "«&nbsp;Je n'ai pas de labneh&nbsp;: par quoi le remplacer&nbsp;?&nbsp;»",
+  "app3.warn": "Substitution suggérée par l'IA, non validée par Arthur et Thierry. Testez-la avant de vous y fier.",
+    "phone.tbd": "À définir",
+  "gal.title": "Galerie",
+  "gal.sub": "Six recettes du livre",
+  "gal.dish": "photo du plat",
+  "gal1.name": "Salade Fattoush",
+  "gal1.origin": "Liban",
+  "gal2.name": "Soufflé au fromage",
+  "gal3.name": "Risotto au safran",
+  "gal3.origin": "Italie",
+  "gal4.name": "Tajine d'agneau au cumin",
+  "gal4.origin": "Maroc",
+  "gal6.name": "Tarte aux fraises",
+  "stories.title": "Histoires",
+  "stories.intro": "Quatre cuisines, une seule table. Les recettes La Brélie viennent de cahiers, de cartes manuscrites, de gestes transmis et d'amitiés&nbsp;: Mami Belfort, Bonne Maman, Zina, Thierry et Arthur.",
+  "s1.title": "Le cahier usé",
+  "s1.body": "Un cahier à la couverture usée, aux quantités notées «&nbsp;à l'œil&nbsp;». Nous avons pesé, goûté, recommencé.",
+  "s2.title": "Quatre cuisines, une table",
+  "s2.body": "Le Sud de la France, la Bretagne, Paris et le Maghreb&nbsp;: des recettes qui ont tenu une table de quinze sans jamais faiblir.",
+  "s3.title": "Une amitié libanaise",
+  "s3.body": "Ces recettes ne viennent pas d'un voyage. Elles viennent d'une amitié, celle de Zina, et d'un amour pour son pays.",
+  "s4.title": "Pourquoi ce livre existe",
+  "s4.body": "L'amour de la cuisine. Et parce qu'une recette qui n'est pas écrite disparaît. 365 recettes, testées deux fois, parfois dix.",
+  "stories.link": "Découvrez les 365 recettes du livre →",
+  "faq.title": "Questions fréquentes",
+  "faq1.q": "Qu'est-ce que La Brélie&nbsp;?",
+  "faq1.a": "Un livre de cuisine de patrimoine familial associé à une application d'IA. Le livre rassemble les recettes de référence&nbsp;; l'application les fait vivre au quotidien&nbsp;: variations, menus, listes de courses et bien plus encore.",
+  "faq2.q": "Combien de recettes contient le livre&nbsp;?",
+  "faq2.a": "365 recettes, toutes essayées et testées de nombreuses fois par Thierry et Arthur. Les fondamentaux de la cuisine française, enrichis de recettes du monde entier.",
+  "faq3.q": "Comment fonctionne l'application&nbsp;?",
+  "faq3.a": "À définir.",
+  "faq4.q": "Quels systèmes d'exploitation sont pris en charge&nbsp;?",
+  "faq4.a": "iOS 16 et supérieur, Android 10 et supérieur.",
+  "faq5.q": "Où acheter le livre&nbsp;?",
+  "faq5.a": "Sur Amazon et dans les librairies partenaires.",
+  "news.p": "Actualités, lancements de l'application, recettes à l'honneur, coulisses et bien plus encore.",
+  "footer.tag": "Recettes de famille et saveurs du monde entier.",
+  "footer.follow": "Nous suivre",
+  "footer.legal": "Légal",
+  "footer.terms": "Conditions générales",
+  "footer.privacy": "Politique de confidentialité",
+  "footer.notice": "Mentions légales",
+  "footer.copy": "© 2026 La Brélie — Tous droits réservés."
+};
+
+  var i18nEls  = document.querySelectorAll("[data-i18n]");
+  var i18nAlts = document.querySelectorAll("[data-i18n-alt]");
+  i18nEls.forEach(function (el)  { el.setAttribute("data-en", el.innerHTML); });
+  i18nAlts.forEach(function (el) { el.setAttribute("data-en-alt", el.getAttribute("alt")); });
+
+  function applyLang(lang) {
+    document.documentElement.lang = lang;
+    i18nEls.forEach(function (el) {
+      var key = el.getAttribute("data-i18n");
+      el.innerHTML = (lang === "fr" && FR[key] !== undefined) ? FR[key] : el.getAttribute("data-en");
+    });
+    i18nAlts.forEach(function (el) {
+      var key = el.getAttribute("data-i18n-alt");
+      el.setAttribute("alt", (lang === "fr" && FR[key] !== undefined) ? FR[key] : el.getAttribute("data-en-alt"));
+    });
+    document.querySelectorAll(".lang-switch button").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false");
+    });
+    var close = document.getElementById("lightbox-close");
+    if (close) close.setAttribute("aria-label", lang === "fr" ? "Fermer" : "Close");
+
+    // The book cover has an English and a French version.
+    var cover = document.getElementById("book-cover");
+    if (cover) {
+      var want = cover.getAttribute(lang === "fr" ? "data-src-fr" : "data-src-en");
+      if (cover.getAttribute("src") !== want) cover.setAttribute("src", want);
+    }
+  }
+
+  function rememberLang(lang) {
+    try { localStorage.setItem("labrelie_lang", lang); } catch (e) {}
+    return lang;
+  }
+
+  function pickInitialLang() {
+    // 1) a link like labrelie.com/?lang=fr  2) the visitor's last choice  3) browser language
+    var q = "";
+    try { q = (new URLSearchParams(window.location.search).get("lang") || "").toLowerCase(); } catch (e) {}
+    if (q.indexOf("fr") === 0) return rememberLang("fr");
+    if (q.indexOf("en") === 0) return rememberLang("en");
+    try {
+      var saved = localStorage.getItem("labrelie_lang");
+      if (saved === "fr" || saved === "en") return saved;
+    } catch (e) {}
+    return ((navigator.language || "en").toLowerCase().indexOf("fr") === 0) ? "fr" : "en";
+  }
+
+  document.querySelectorAll(".lang-switch button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      applyLang(rememberLang(b.getAttribute("data-lang")));
+    });
+  });
+  applyLang(pickInitialLang());
+
+  // Load the other cover in the background so switching language is instant.
+  (function () {
+    var cover = document.getElementById("book-cover");
+    if (!cover) return;
+    ["data-src-en", "data-src-fr"].forEach(function (a) {
+      var u = cover.getAttribute(a);
+      if (u) { var img = new Image(); img.src = u; }
+    });
+  })();
+
+  // Photo lightbox — click any photo to see it full-size, uncropped,
+  // with its title on the left.
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = document.getElementById("lightbox-img");
+  var lightboxCaption = document.getElementById("lightbox-caption");
+
+  function txt(el) { return el ? el.textContent.trim() : ""; }
+
+  function openLightbox(src, alt, eyebrow, title) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || "";
+    lightboxCaption.innerHTML = "";
+    if (eyebrow) {
+      var e = document.createElement("span");
+      e.className = "lb-eyebrow";
+      e.textContent = eyebrow;
+      lightboxCaption.appendChild(e);
+    }
+    if (title) {
+      var t = document.createElement("span");
+      t.className = "lb-title";
+      t.textContent = title;
+      lightboxCaption.appendChild(t);
+    }
+    lightbox.classList.add("open");
+  }
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    lightboxImg.src = "";
+  }
+
+  // Gallery photos
+  document.querySelectorAll(".gallery-img").forEach(function (box) {
+    var img = box.querySelector("img");
+    if (!img) return; // skip the placeholder "dish photo" tile
+    box.addEventListener("click", function () {
+      var figure = box.closest("figure");
+      openLightbox(img.src, img.alt,
+        txt(figure && figure.querySelector(".origin")),
+        txt(figure && figure.querySelector(".name")));
+    });
+  });
+
+  // Story photos
+  document.querySelectorAll(".stories-grid article img").forEach(function (img) {
+    img.addEventListener("click", function () {
+      var article = img.closest("article");
+      openLightbox(img.src, img.alt,
+        txt(article && article.querySelector(".story-label")),
+        txt(article && article.querySelector(".story-title")));
+    });
+  });
+
+  document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", function (e) {
+    if (e.target !== lightboxImg) closeLightbox();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeLightbox();
+  });
+
+  // FAQ accordion
+  document.querySelectorAll(".faq-item").forEach(function (item) {
+    var btn = item.querySelector(".faq-q");
+    var sign = item.querySelector(".sign");
+    btn.addEventListener("click", function () {
+      var isOpen = item.classList.contains("open");
+      document.querySelectorAll(".faq-item.open").forEach(function (open) {
+        open.classList.remove("open");
+        open.querySelector(".sign").textContent = "+";
+      });
+      if (!isOpen) {
+        item.classList.add("open");
+        sign.textContent = "–";
+      }
+    });
+  });
+
+</script>
+
+<!-- Supascribe Script — powers the newsletter signup form above -->
+<script src="https://js.supascribe.com/v1/loader/5FCg1l9YZthOufaBZjtPhh2jgR32.js" async></script>
+
+</body>
+</html>
