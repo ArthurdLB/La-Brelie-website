@@ -43,8 +43,8 @@
   .btn-secondary:hover { background: rgba(61,90,153,.07); }
   .hero-note { font-size: 12.5px; color: #6B7280; margin: 16px 0 0; letter-spacing: .02em; }
   .hero-imgs { display: flex; gap: 16px; align-items: flex-end; }
-  .hero-imgs img:first-child { flex: 1.35; width: 100%; min-width: 0; height: auto; display: block; border-radius: 2px; box-shadow: 0 2px 4px rgba(36,40,47,.06), 0 18px 40px rgba(36,40,47,.12); }
-  .hero-imgs img:last-child { flex: 1; width: 100%; min-width: 0; height: auto; display: block; border-radius: 22px; box-shadow: 0 2px 4px rgba(36,40,47,.06), 0 14px 30px rgba(36,40,47,.1); }
+  .hero-imgs img { flex: 1.35; width: 100%; min-width: 0; height: auto; display: block; border-radius: 2px; box-shadow: 0 2px 4px rgba(36,40,47,.06), 0 18px 40px rgba(36,40,47,.12); }
+  .hero-phone { flex: 1; min-width: 0; }
 
   section.block { padding: 100px 24px 0; }
   .block-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px solid #E2DDD4; padding-bottom: 14px; margin-bottom: 36px; }
@@ -53,6 +53,8 @@
 
   .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px; }
   .app-shot-frame { position: relative; aspect-ratio: 9/18.2; border-radius: 38px; background: #F7F5F1; border: 1px solid rgba(36,40,47,.16); box-shadow: 0 2px 4px rgba(36,40,47,.05), 0 14px 30px rgba(36,40,47,.08); display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 24px; }
+  .hero-phone.app-shot-frame { aspect-ratio: 9/18.2; }
+  .hero-phone .phone-tbd { font-size: 23px; }
   .phone-island { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 31%; height: 22px; background: #0B0C0E; border-radius: 999px; }
   .phone-status { position: absolute; top: 14px; left: 0; right: 0; height: 22px; padding: 0 9%; display: flex; align-items: center; justify-content: space-between; font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 700; color: #24282F; }
   .phone-home { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 34%; height: 5px; border-radius: 999px; background: rgba(36,40,47,.28); }
@@ -99,6 +101,7 @@
   .story-title { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 22px; line-height: 1.25; margin: 8px 0 8px; color: #24282F; }
   .story-body { font-size: 14px; line-height: 1.6; color: #4B5563; margin: 0; }
   .stories-link { margin: 44px 0 0; font-size: 15px; }
+  .gallery-link { margin-top: 32px; }
   .stories-link a { border-bottom: 1px solid rgba(61,90,153,.35); padding-bottom: 2px; }
 
   .faq-list { display: flex; flex-direction: column; border-top: 1px solid #E2DDD4; }
@@ -160,7 +163,12 @@
       </div>
       <div class="hero-imgs">
         <img id="book-cover" width="1309" height="1852" data-src-en="assets/couverture-livre-en.png" data-src-fr="assets/couverture-livre-fr.png" alt="La Brélie book cover — Family Recipes and Flavours of the World" data-i18n-alt="hero.cover.alt">
-        <img src="assets/app-accueil-v2.png" alt="The La Brélie app — home screen" data-i18n-alt="hero.app.alt">
+        <div class="hero-phone app-shot-frame">
+          <div class="phone-status"><span>9:41</span><svg width="52" height="12" viewBox="0 0 52 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="#24282F"/><rect x="5" y="5" width="3" height="7" rx="1" fill="#24282F"/><rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="#24282F"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#24282F"/><rect x="25" y="0.5" width="24" height="11" rx="3.2" fill="none" stroke="#24282F" stroke-opacity=".45"/><rect x="27" y="2.5" width="20" height="7" rx="2" fill="#24282F"/><rect x="50" y="4" width="2" height="4" rx="1" fill="#24282F" fill-opacity=".45"/></svg></div>
+          <div class="phone-island"></div>
+          <div class="phone-tbd" data-i18n="hero.phone">App landing page preview</div>
+          <div class="phone-home"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -252,6 +260,7 @@
       </figure>
 
     </div>
+    <p class="stories-link gallery-link"><a href="#livre" data-i18n="gallery.link">Discover 6 recipes from the book →</a></p>
   </section>
 
   <section id="stories" class="stories-section">
@@ -291,7 +300,6 @@
         </article>
 
       </div>
-      <p class="stories-link"><a href="#livre" data-i18n="stories.link">Discover all 365 recipes in the book →</a></p>
     </div>
   </section>
 
@@ -369,9 +377,9 @@
       <div>
         <div class="footer-col-title" data-i18n="footer.legal">Legal</div>
         <div class="footer-links">
-          <a href="terms-and-conditions.html" data-i18n="footer.terms">Terms &amp; Conditions</a>
-          <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy Policy</a>
-          <a href="legal-notice.html" data-i18n="footer.notice">Legal Notice</a>
+          <a href="terms-and-conditions.html" data-href-fr="conditions-generales.html" data-i18n="footer.terms">Terms &amp; Conditions</a>
+          <a href="privacy-policy.html" data-href-fr="politique-de-confidentialite.html" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="legal-notice.html" data-href-fr="mentions-legales.html" data-i18n="footer.notice">Legal Notice</a>
         </div>
       </div>
     </div>
@@ -402,7 +410,6 @@
   "hero.download": "Télécharger l'application",
   "hero.note": "iOS · Android · Édition premium reliée",
   "hero.cover.alt": "Couverture du livre La Brélie — Recettes de Famille et Saveurs du Monde",
-  "hero.app.alt": "L'application La Brélie — écran d'accueil",
   "app.title": "L'application en action",
   "app.sub": "Scan du frigo · Générateur de menus · Substitutions",
   "app1.title": "Scan du frigo",
@@ -416,6 +423,8 @@
   "app3.quote": "«&nbsp;Je n'ai pas de labneh&nbsp;: par quoi le remplacer&nbsp;?&nbsp;»",
   "app3.warn": "Substitution suggérée par l'IA, non validée par Arthur et Thierry. Testez-la avant de vous y fier.",
     "phone.tbd": "À définir",
+  "gallery.link": "Découvrez 6 recettes du livre →",
+  "hero.phone": "Aperçu de la page d'accueil de l'application",
   "gal.title": "Galerie",
   "gal.sub": "Six recettes du livre",
   "gal.dish": "photo du plat",
@@ -437,7 +446,6 @@
   "s3.body": "Ces recettes ne viennent pas d'un voyage. Elles viennent d'une amitié, celle de Zina, et d'un amour pour son pays.",
   "s4.title": "Pourquoi ce livre existe",
   "s4.body": "L'amour de la cuisine. Et parce qu'une recette qui n'est pas écrite disparaît. 365 recettes, testées deux fois, parfois dix.",
-  "stories.link": "Découvrez les 365 recettes du livre →",
   "faq.title": "Questions fréquentes",
   "faq1.q": "Qu'est-ce que La Brélie&nbsp;?",
   "faq1.a": "Un livre de cuisine de patrimoine familial associé à une application d'IA. Le livre rassemble les recettes de référence&nbsp;; l'application les fait vivre au quotidien&nbsp;: variations, menus, listes de courses et bien plus encore.",
@@ -479,6 +487,12 @@
     });
     var close = document.getElementById("lightbox-close");
     if (close) close.setAttribute("aria-label", lang === "fr" ? "Fermer" : "Close");
+
+    // Links that have a French version (the legal pages).
+    document.querySelectorAll("[data-href-fr]").forEach(function (a) {
+      if (!a.hasAttribute("data-href-en")) a.setAttribute("data-href-en", a.getAttribute("href"));
+      a.setAttribute("href", a.getAttribute(lang === "fr" ? "data-href-fr" : "data-href-en"));
+    });
 
     // The book cover has an English and a French version.
     var cover = document.getElementById("book-cover");
