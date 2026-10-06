@@ -25,11 +25,24 @@
   ul { padding-left: 22px; margin: 10px 0; }
   .placeholder { color: #A6453B; }
   footer { text-align: center; padding: 36px 24px; font-size: 12px; color: #8A8F99; border-top: 1px solid #E2DDD4; margin-top: 60px; }
+
+  header { position: relative; }
+  .lang-switch { position: absolute; top: 18px; right: 24px; display: flex; align-items: center; gap: 8px; font-size: 12.5px; letter-spacing: .12em; font-weight: 600; color: #C9C4BA; }
+  .lang-switch a { color: #8A8F99; text-decoration: none; padding: 6px 2px; border-bottom: 1.5px solid transparent; }
+  .lang-switch a:hover { color: #3D5A99; }
+  .lang-switch a[aria-current="true"] { color: #3D5A99; border-bottom-color: #3D5A99; }
+  header .lang-switch span { font-family: inherit; font-size: inherit; font-weight: inherit; color: #C9C4BA; }
+  @media (max-width: 480px) { .lang-switch { top: 10px; right: 14px; } }
 </style>
 </head>
 <body>
 
 <header>
+  <div class="lang-switch" role="group" aria-label="Language / Langue">
+    <a href="terms-and-conditions.html" data-lang="en" aria-current="true">EN</a>
+    <span aria-hidden="true">|</span>
+    <a href="conditions-generales.html" data-lang="fr">FR</a>
+  </div>
   <img src="assets/logo-dlb-blue.png" alt="dLB">
   <span>La Brélie</span>
 </header>
@@ -71,6 +84,15 @@
 </div>
 
 <footer>© 2026 La Brélie — All rights reserved.</footer>
+
+<script>
+  // Remember the chosen language so the main page opens in the same one.
+  document.querySelectorAll(".lang-switch a").forEach(function (a) {
+    a.addEventListener("click", function () {
+      try { localStorage.setItem("labrelie_lang", a.getAttribute("data-lang")); } catch (e) {}
+    });
+  });
+</script>
 
 </body>
 </html>
