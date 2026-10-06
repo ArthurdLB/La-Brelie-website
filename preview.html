@@ -16,12 +16,19 @@
   img { max-width: 100%; }
   .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-  header { display: flex; flex-direction: column; align-items: center; gap: 0; padding: 44px 24px 6px; }
+  header { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0; padding: 44px 24px 6px; }
   .header-brand { display: flex; align-items: center; justify-content: center; gap: 16px; }
   .header-brand img { width: 54px; height: auto; display: block; }
   .header-brand span { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 46px; line-height: 1; color: #3D5A99; letter-spacing: .01em; }
   nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; margin-top: 26px; font-size: 13px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: #4B5563; }
   nav a { color: inherit; }
+
+
+  .lang-switch { position: absolute; top: 18px; right: 24px; display: flex; align-items: center; gap: 8px; font-size: 12.5px; letter-spacing: .12em; font-weight: 600; color: #C9C4BA; }
+  .lang-switch button { background: none; border: none; padding: 6px 2px; font: inherit; letter-spacing: inherit; color: #8A8F99; cursor: pointer; border-bottom: 1.5px solid transparent; }
+  .lang-switch button:hover { color: #3D5A99; }
+  .lang-switch button[aria-pressed="true"] { color: #3D5A99; border-bottom-color: #3D5A99; }
+  @media (max-width: 480px) { .lang-switch { top: 10px; right: 14px; } }
 
   .hero { padding: 56px 24px 0; }
   .hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 56px; align-items: center; }
@@ -45,8 +52,11 @@
   .block-head span { font-size: 13px; color: #6B7280; letter-spacing: .03em; }
 
   .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px; }
-  .app-shot-frame { aspect-ratio: 9/17; border-radius: 20px; overflow: hidden; }
-  .app-shot-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .app-shot-frame { position: relative; aspect-ratio: 9/18.2; border-radius: 38px; background: #F7F5F1; border: 1px solid rgba(36,40,47,.16); box-shadow: 0 2px 4px rgba(36,40,47,.05), 0 14px 30px rgba(36,40,47,.08); display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 24px; }
+  .phone-island { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 31%; height: 22px; background: #0B0C0E; border-radius: 999px; }
+  .phone-status { position: absolute; top: 14px; left: 0; right: 0; height: 22px; padding: 0 9%; display: flex; align-items: center; justify-content: space-between; font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 700; color: #24282F; }
+  .phone-home { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 34%; height: 5px; border-radius: 999px; background: rgba(36,40,47,.28); }
+  .phone-tbd { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 30px; color: #3D5A99; }
   .app-shot-meta { display: flex; align-items: baseline; gap: 9px; margin-top: 18px; }
   .app-shot-meta .num { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #3D5A99; }
   .app-shot-meta .title { font-family: 'Cormorant Garamond', serif; font-size: 23px; font-weight: 500; color: #24282F; line-height: 1.2; }
@@ -118,16 +128,21 @@
 <div>
 
   <header>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <span aria-hidden="true">|</span>
+      <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+    </div>
     <div class="header-brand">
       <img src="assets/logo-dlb-blue.png" alt="dLB">
       <span>La Brélie</span>
     </div>
     <nav>
-      <a href="#livre">The Book</a>
-      <a href="#galerie">Gallery</a>
-      <a href="#stories">Stories</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
+      <a href="#livre" data-i18n="nav.book">The Book</a>
+      <a href="#galerie" data-i18n="nav.gallery">Gallery</a>
+      <a href="#stories" data-i18n="nav.stories">Stories</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
     </nav>
   </header>
 
@@ -136,47 +151,62 @@
       <div>
         <h1>Recettes de Famille<br>et Saveurs du Monde</h1>
         <p class="subtitle">Family Recipes and Flavours of the World</p>
-        <p class="desc">A culinary heritage book. Discover <strong style="font-weight:600;color:#24282F;">365 tested recipes</strong> by Thierry and Arthur, brought to life by the intelligent app.</p>
+        <p class="desc" data-i18n="hero.desc">A culinary heritage book. Discover <strong style="font-weight:600;color:#24282F;">365 tested recipes</strong> by Thierry and Arthur, brought to life by the intelligent app.</p>
         <div class="cta-row">
-          <a href="#" class="btn-primary">Buy the Book</a>
-          <a href="#app" class="btn-secondary">Download the App</a>
+          <a href="#" class="btn-primary" data-i18n="hero.buy">Buy the Book</a>
+          <a href="#app" class="btn-secondary" data-i18n="hero.download">Download the App</a>
         </div>
-        <p class="hero-note">iOS · Android · Premium hardcover edition</p>
+        <p class="hero-note" data-i18n="hero.note">iOS · Android · Premium hardcover edition</p>
       </div>
       <div class="hero-imgs">
-        <img src="assets/couverture-livre.png" alt="La Brélie book cover — Recettes de Famille et Saveurs du Monde">
-        <img src="assets/app-accueil-v2.png" alt="The La Brélie app — home screen">
+        <img id="book-cover" width="1309" height="1852" data-src-en="assets/couverture-livre-en.png" data-src-fr="assets/couverture-livre-fr.png" alt="La Brélie book cover — Family Recipes and Flavours of the World" data-i18n-alt="hero.cover.alt">
+        <img src="assets/app-accueil-v2.png" alt="The La Brélie app — home screen" data-i18n-alt="hero.app.alt">
       </div>
     </div>
   </section>
 
   <section id="app" class="block wrap">
     <div class="block-head">
-      <h2>The app in action</h2>
-      <span>Fridge scan · Menu generator · Substitutions</span>
+      <h2 data-i18n="app.title">The app in action</h2>
+      <span data-i18n="app.sub">Fridge scan · Menu generator · Substitutions</span>
     </div>
     <div class="app-grid">
 
       <div>
-        <div class="app-shot-frame"><img src="assets/app-accueil.png" alt="Fridge scan screen"></div>
-        <div class="app-shot-meta"><span class="num">01</span><span class="title">Fridge Scan</span></div>
-        <p class="app-shot-body">A quick video or photo of the fridge — or a manual selection. The AI recognises the ingredients, asks for confirmation, then suggests the 3 to 5 best recipes from the book you can make tonight.</p>
-        <p class="app-shot-quote">"I don't know what to cook for my kids tonight."</p>
+        <div class="app-shot-frame">
+          <div class="phone-status"><span>9:41</span><svg width="52" height="12" viewBox="0 0 52 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="#24282F"/><rect x="5" y="5" width="3" height="7" rx="1" fill="#24282F"/><rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="#24282F"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#24282F"/><rect x="25" y="0.5" width="24" height="11" rx="3.2" fill="none" stroke="#24282F" stroke-opacity=".45"/><rect x="27" y="2.5" width="20" height="7" rx="2" fill="#24282F"/><rect x="50" y="4" width="2" height="4" rx="1" fill="#24282F" fill-opacity=".45"/></svg></div>
+          <div class="phone-island"></div>
+          <div class="phone-tbd" data-i18n="phone.tbd">To be defined</div>
+          <div class="phone-home"></div>
+        </div>
+        <div class="app-shot-meta"><span class="num">01</span><span class="title" data-i18n="app1.title">Fridge Scan</span></div>
+        <p class="app-shot-body" data-i18n="app1.body">A quick video or photo of the fridge — or a manual selection. The AI recognises the ingredients, asks for confirmation, then suggests the 3 to 5 best recipes from the book you can make tonight.</p>
+        <p class="app-shot-quote" data-i18n="app1.quote">"I don't know what to cook for my kids tonight."</p>
       </div>
 
       <div>
-        <div class="app-shot-frame"><img src="assets/app-accueil-v2.png" alt="Menu generator screen"></div>
-        <div class="app-shot-meta"><span class="num">02</span><span class="title">Menu Generator</span></div>
-        <p class="app-shot-body">Five complete menus that account for the occasion, dietary constraints, the season and the harmony of starter, main and dessert. For example: morel tartines → poule au pot → tarte tatin.</p>
-        <p class="app-shot-quote">"I'm hosting three couples on Friday night, one of them halal."</p>
+        <div class="app-shot-frame">
+          <div class="phone-status"><span>9:41</span><svg width="52" height="12" viewBox="0 0 52 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="#24282F"/><rect x="5" y="5" width="3" height="7" rx="1" fill="#24282F"/><rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="#24282F"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#24282F"/><rect x="25" y="0.5" width="24" height="11" rx="3.2" fill="none" stroke="#24282F" stroke-opacity=".45"/><rect x="27" y="2.5" width="20" height="7" rx="2" fill="#24282F"/><rect x="50" y="4" width="2" height="4" rx="1" fill="#24282F" fill-opacity=".45"/></svg></div>
+          <div class="phone-island"></div>
+          <div class="phone-tbd" data-i18n="phone.tbd">To be defined</div>
+          <div class="phone-home"></div>
+        </div>
+        <div class="app-shot-meta"><span class="num">02</span><span class="title" data-i18n="app2.title">Menu Generator</span></div>
+        <p class="app-shot-body" data-i18n="app2.body">Five complete menus that account for the occasion, dietary constraints, the season and the harmony of starter, main and dessert. For example: morel tartines → poule au pot → tarte tatin.</p>
+        <p class="app-shot-quote" data-i18n="app2.quote">"I'm hosting three couples on Friday night, one of them halal."</p>
       </div>
 
       <div>
-        <div class="app-shot-frame"><img src="assets/app-accueil.png" alt="Ingredient substitutions screen"></div>
-        <div class="app-shot-meta"><span class="num">03</span><span class="title">Ingredient Substitutions</span></div>
-        <p class="app-shot-body">Missing an ingredient? The AI suggests a replacement and its ratio — labneh → Greek yoghurt + salt, butter → oil (0.8:1). The book already contains many; the app generates more.</p>
-        <p class="app-shot-quote">"I don't have labneh — what can I use instead?"</p>
-        <p class="app-shot-warn">AI-suggested substitution, not validated by Arthur and Thierry. Test it before relying on it.</p>
+        <div class="app-shot-frame">
+          <div class="phone-status"><span>9:41</span><svg width="52" height="12" viewBox="0 0 52 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="#24282F"/><rect x="5" y="5" width="3" height="7" rx="1" fill="#24282F"/><rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="#24282F"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#24282F"/><rect x="25" y="0.5" width="24" height="11" rx="3.2" fill="none" stroke="#24282F" stroke-opacity=".45"/><rect x="27" y="2.5" width="20" height="7" rx="2" fill="#24282F"/><rect x="50" y="4" width="2" height="4" rx="1" fill="#24282F" fill-opacity=".45"/></svg></div>
+          <div class="phone-island"></div>
+          <div class="phone-tbd" data-i18n="phone.tbd">To be defined</div>
+          <div class="phone-home"></div>
+        </div>
+        <div class="app-shot-meta"><span class="num">03</span><span class="title" data-i18n="app3.title">Ingredient Substitutions</span></div>
+        <p class="app-shot-body" data-i18n="app3.body">Missing an ingredient? The AI suggests a replacement and its ratio — labneh → Greek yoghurt + salt, butter → oil (0.8:1). The book already contains many; the app generates more.</p>
+        <p class="app-shot-quote" data-i18n="app3.quote">"I don't have labneh — what can I use instead?"</p>
+        <p class="app-shot-warn" data-i18n="app3.warn">AI-suggested substitution, not validated by Arthur and Thierry. Test it before relying on it.</p>
       </div>
 
     </div>
@@ -184,41 +214,41 @@
 
   <section id="galerie" class="block wrap">
     <div class="block-head">
-      <h2>Gallery</h2>
-      <span>Six recipes from the book</span>
+      <h2 data-i18n="gal.title">Gallery</h2>
+      <span data-i18n="gal.sub">Six recipes from the book</span>
     </div>
     <div class="gallery-grid">
 
       <figure>
-        <div class="gallery-img"><img src="assets/fattoush.jpg" alt="Fattoush Salad"></div>
-        <figcaption><span class="name">Fattoush Salad</span><span class="origin">Lebanon</span></figcaption>
+        <div class="gallery-img"><img src="assets/fattoush.jpg" alt="Fattoush Salad" data-i18n-alt="gal1.name"></div>
+        <figcaption><span class="name" data-i18n="gal1.name">Fattoush Salad</span><span class="origin" data-i18n="gal1.origin">Lebanon</span></figcaption>
       </figure>
 
       <figure>
-        <div class="gallery-img"><img src="assets/souffle.jpg" alt="Cheese Soufflé"></div>
-        <figcaption><span class="name">Cheese Soufflé</span><span class="origin">France</span></figcaption>
+        <div class="gallery-img"><img src="assets/souffle.jpg" alt="Cheese Soufflé" data-i18n-alt="gal2.name"></div>
+        <figcaption><span class="name" data-i18n="gal2.name">Cheese Soufflé</span><span class="origin" data-i18n="gal2.origin">France</span></figcaption>
       </figure>
 
       <figure>
-        <div class="gallery-img"><img src="assets/saffron-risotto.jpg" alt="Saffron Risotto"></div>
-        <figcaption><span class="name">Saffron Risotto</span><span class="origin">Italy</span></figcaption>
+        <div class="gallery-img"><img src="assets/saffron-risotto.jpg" alt="Saffron Risotto" data-i18n-alt="gal3.name"></div>
+        <figcaption><span class="name" data-i18n="gal3.name">Saffron Risotto</span><span class="origin" data-i18n="gal3.origin">Italy</span></figcaption>
       </figure>
 
       <figure>
         <div class="gallery-img" style="background-color:#EDE9E2;display:flex;align-items:center;justify-content:center;">
-          <span style="font:500 10.5px/1.3 'Karla',sans-serif;letter-spacing:.04em;text-transform:uppercase;color:#6B7280;">dish photo</span>
+          <span style="font:500 10.5px/1.3 'Karla',sans-serif;letter-spacing:.04em;text-transform:uppercase;color:#6B7280;" data-i18n="gal.dish">dish photo</span>
         </div>
-        <figcaption><span class="name">Cumin Lamb Tagine</span><span class="origin">Morocco</span></figcaption>
+        <figcaption><span class="name" data-i18n="gal4.name">Cumin Lamb Tagine</span><span class="origin" data-i18n="gal4.origin">Morocco</span></figcaption>
       </figure>
 
       <figure>
-        <div class="gallery-img"><img src="assets/tarte-tatin.jpg" alt="Tarte Tatin"></div>
-        <figcaption><span class="name">Tarte Tatin</span><span class="origin">Sologne</span></figcaption>
+        <div class="gallery-img"><img src="assets/tarte-tatin.jpg" alt="Tarte Tatin" data-i18n-alt="gal5.name"></div>
+        <figcaption><span class="name" data-i18n="gal5.name">Tarte Tatin</span><span class="origin" data-i18n="gal5.origin">Sologne</span></figcaption>
       </figure>
 
       <figure>
-        <div class="gallery-img"><img src="assets/strawberry-tart.jpg" alt="Strawberry Tart"></div>
-        <figcaption><span class="name">Strawberry Tart</span><span class="origin">France</span></figcaption>
+        <div class="gallery-img"><img src="assets/strawberry-tart.jpg" alt="Strawberry Tart" data-i18n-alt="gal6.name"></div>
+        <figcaption><span class="name" data-i18n="gal6.name">Strawberry Tart</span><span class="origin" data-i18n="gal6.origin">France</span></figcaption>
       </figure>
 
     </div>
@@ -227,71 +257,71 @@
   <section id="stories" class="stories-section">
     <div class="wrap stories-inner">
       <div class="stories-intro">
-        <h2>Stories</h2>
-        <p>Four kitchens, one table. The La Brélie recipes come from notebooks, handwritten cards, gestures passed down and friendships — Mami Belfort, Bonne Maman, Zina, Thierry and Arthur.</p>
+        <h2 data-i18n="stories.title">Stories</h2>
+        <p data-i18n="stories.intro">Four kitchens, one table. The La Brélie recipes come from notebooks, handwritten cards, gestures passed down and friendships — Mami Belfort, Bonne Maman, Zina, Thierry and Arthur.</p>
       </div>
       <div class="stories-grid">
 
         <article>
           <img src="assets/story-mami-belfort.jpg" alt="Mami Belfort">
           <div class="story-label">Mami Belfort</div>
-          <h3 class="story-title">The worn notebook</h3>
-          <p class="story-body">A notebook with a worn cover, quantities noted "by eye". We measured, tasted, started over.</p>
+          <h3 class="story-title" data-i18n="s1.title">The worn notebook</h3>
+          <p class="story-body" data-i18n="s1.body">A notebook with a worn cover, quantities noted "by eye". We measured, tasted, started over.</p>
         </article>
 
         <article>
           <img src="assets/story-bonne-maman.jpg" alt="Bonne Maman">
           <div class="story-label">Bonne Maman</div>
-          <h3 class="story-title">Four cuisines, one table</h3>
-          <p class="story-body">The South of France, Brittany, Paris and the Maghreb — recipes that held a table of fifteen without ever faltering.</p>
+          <h3 class="story-title" data-i18n="s2.title">Four cuisines, one table</h3>
+          <p class="story-body" data-i18n="s2.body">The South of France, Brittany, Paris and the Maghreb — recipes that held a table of fifteen without ever faltering.</p>
         </article>
 
         <article>
           <img src="assets/story-zina.jpg" alt="Zina">
           <div class="story-label">Zina</div>
-          <h3 class="story-title">A Lebanese friendship</h3>
-          <p class="story-body">These recipes don't come from a trip. They come from a friendship — Zina's — and from a love for her country.</p>
+          <h3 class="story-title" data-i18n="s3.title">A Lebanese friendship</h3>
+          <p class="story-body" data-i18n="s3.body">These recipes don't come from a trip. They come from a friendship — Zina's — and from a love for her country.</p>
         </article>
 
         <article>
           <img src="assets/thierry-arthur.jpg" alt="Thierry & Arthur">
           <div class="story-label">Thierry &amp; Arthur</div>
-          <h3 class="story-title">Why this book exists</h3>
-          <p class="story-body">A love of cooking. And because an unwritten recipe disappears. 365 recipes, tested twice, sometimes ten times.</p>
+          <h3 class="story-title" data-i18n="s4.title">Why this book exists</h3>
+          <p class="story-body" data-i18n="s4.body">A love of cooking. And because an unwritten recipe disappears. 365 recipes, tested twice, sometimes ten times.</p>
         </article>
 
       </div>
-      <p class="stories-link"><a href="#livre">Discover all 365 recipes in the book →</a></p>
+      <p class="stories-link"><a href="#livre" data-i18n="stories.link">Discover all 365 recipes in the book →</a></p>
     </div>
   </section>
 
   <section id="faq" class="block wrap" style="max-width:820px;">
-    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:34px;margin:0 0 30px;color:#24282F;">Frequently asked questions</h2>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:34px;margin:0 0 30px;color:#24282F;" data-i18n="faq.title">Frequently asked questions</h2>
     <div class="faq-list">
 
       <div class="faq-item">
-        <button class="faq-q"><span>What is La Brélie?</span><span class="sign">+</span></button>
-        <p class="faq-a">A family heritage cookbook paired with an AI app. The book gathers the reference recipes; the app brings them to life day to day: variations, menus, shopping lists and much more.</p>
+        <button class="faq-q"><span data-i18n="faq1.q">What is La Brélie?</span><span class="sign">+</span></button>
+        <p class="faq-a" data-i18n="faq1.a">A family heritage cookbook paired with an AI app. The book gathers the reference recipes; the app brings them to life day to day: variations, menus, shopping lists and much more.</p>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q"><span>How many recipes are in the book?</span><span class="sign">+</span></button>
-        <p class="faq-a">365 recipes, all tried and tested many times by Thierry and Arthur. The foundations of French cooking, enriched with recipes from around the world.</p>
+        <button class="faq-q"><span data-i18n="faq2.q">How many recipes are in the book?</span><span class="sign">+</span></button>
+        <p class="faq-a" data-i18n="faq2.a">365 recipes, all tried and tested many times by Thierry and Arthur. The foundations of French cooking, enriched with recipes from around the world.</p>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q"><span>How does the app work?</span><span class="sign">+</span></button>
-        <p class="faq-a">To be defined.</p>
+        <button class="faq-q"><span data-i18n="faq3.q">How does the app work?</span><span class="sign">+</span></button>
+        <p class="faq-a" data-i18n="faq3.a">To be defined.</p>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q"><span>Which operating systems are supported?</span><span class="sign">+</span></button>
-        <p class="faq-a">iOS 16 and above, Android 10 and above.</p>
+        <button class="faq-q"><span data-i18n="faq4.q">Which operating systems are supported?</span><span class="sign">+</span></button>
+        <p class="faq-a" data-i18n="faq4.a">iOS 16 and above, Android 10 and above.</p>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q"><span>Where can I buy the book?</span><span class="sign">+</span></button>
-        <p class="faq-a">On Amazon and from partner bookshops.</p>
+        <button class="faq-q"><span data-i18n="faq5.q">Where can I buy the book?</span><span class="sign">+</span></button>
+        <p class="faq-a" data-i18n="faq5.a">On Amazon and from partner bookshops.</p>
       </div>
 
     </div>
@@ -300,7 +330,7 @@
   <section class="newsletter-wrap">
     <div class="newsletter-card">
       <h2>Newsletter</h2>
-      <p>News, App launches, recipe spotlights, behind the scenes and much more.</p>
+      <p data-i18n="news.p">News, App launches, recipe spotlights, behind the scenes and much more.</p>
       <div data-supascribe-embed-id="861370803265" data-supascribe-subscribe></div>
     </div>
   </section>
@@ -318,7 +348,7 @@
           <img src="assets/logo-dlb-blue.png" alt="dLB">
           <span>La Brélie</span>
         </div>
-        <p style="font-size:13px;line-height:1.6;color:#6B7280;margin:0;">Family recipes and flavours from around the world.</p>
+        <p style="font-size:13px;line-height:1.6;color:#6B7280;margin:0;" data-i18n="footer.tag">Family recipes and flavours from around the world.</p>
       </div>
       <div>
         <div class="footer-col-title">Contact</div>
@@ -328,7 +358,7 @@
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Follow</div>
+        <div class="footer-col-title" data-i18n="footer.follow">Follow</div>
         <div class="footer-links">
           <a href="https://www.instagram.com/labrelie_" target="_blank" rel="noopener noreferrer">Instagram</a>
           <a href="https://www.tiktok.com/@labrelie_" target="_blank" rel="noopener noreferrer">TikTok</a>
@@ -337,15 +367,15 @@
         </div>
       </div>
       <div>
-        <div class="footer-col-title">Legal</div>
+        <div class="footer-col-title" data-i18n="footer.legal">Legal</div>
         <div class="footer-links">
-          <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
-          <a href="privacy-policy.html">Privacy Policy</a>
-          <a href="legal-notice.html">Legal Notice</a>
+          <a href="terms-and-conditions.html" data-i18n="footer.terms">Terms &amp; Conditions</a>
+          <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="legal-notice.html" data-i18n="footer.notice">Legal Notice</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">© 2026 La Brélie — All rights reserved.</div>
+    <div class="footer-bottom" data-i18n="footer.copy">© 2026 La Brélie — All rights reserved.</div>
   </footer>
 
 </div>
@@ -356,6 +386,142 @@
   if (localStorage.getItem("labrelie_gate_ok") !== "true") {
     window.location.href = "index.html";
   }
+
+  // ---------- Language: English / French ----------
+  // The English text lives in the page itself; the French is below.
+  // The main title (French line + English line) is intentionally not
+  // translated, so it stays identical in both languages.
+  var FR = {
+  "nav.book": "Le livre",
+  "nav.gallery": "Galerie",
+  "nav.stories": "Histoires",
+  "nav.faq": "FAQ",
+  "nav.contact": "Contact",
+  "hero.desc": "Un livre de patrimoine culinaire. Découvrez <strong style=\"font-weight:600;color:#24282F;\">365 recettes testées</strong> par Thierry et Arthur, qui prennent vie grâce à l'application intelligente.",
+  "hero.buy": "Acheter le livre",
+  "hero.download": "Télécharger l'application",
+  "hero.note": "iOS · Android · Édition premium reliée",
+  "hero.cover.alt": "Couverture du livre La Brélie — Recettes de Famille et Saveurs du Monde",
+  "hero.app.alt": "L'application La Brélie — écran d'accueil",
+  "app.title": "L'application en action",
+  "app.sub": "Scan du frigo · Générateur de menus · Substitutions",
+  "app1.title": "Scan du frigo",
+  "app1.body": "Une courte vidéo ou une photo du frigo, ou une sélection manuelle. L'IA reconnaît les ingrédients, demande confirmation, puis propose les 3 à 5 meilleures recettes du livre que vous pouvez préparer ce soir.",
+  "app1.quote": "«&nbsp;Je ne sais pas quoi cuisiner ce soir pour mes enfants.&nbsp;»",
+    "app2.title": "Générateur de menus",
+  "app2.body": "Cinq menus complets qui tiennent compte de l'occasion, des contraintes alimentaires, de la saison et de l'harmonie entre l'entrée, le plat et le dessert. Par exemple&nbsp;: tartines aux morilles → poule au pot → tarte Tatin.",
+  "app2.quote": "«&nbsp;Je reçois trois couples vendredi soir, dont l'un mange halal.&nbsp;»",
+    "app3.title": "Substitutions d'ingrédients",
+  "app3.body": "Il vous manque un ingrédient&nbsp;? L'IA propose un remplacement et sa proportion&nbsp;: labneh → yaourt grec + sel, beurre → huile (0,8&nbsp;:&nbsp;1). Le livre en contient déjà beaucoup&nbsp;; l'application en génère d'autres.",
+  "app3.quote": "«&nbsp;Je n'ai pas de labneh&nbsp;: par quoi le remplacer&nbsp;?&nbsp;»",
+  "app3.warn": "Substitution suggérée par l'IA, non validée par Arthur et Thierry. Testez-la avant de vous y fier.",
+    "phone.tbd": "À définir",
+  "gal.title": "Galerie",
+  "gal.sub": "Six recettes du livre",
+  "gal.dish": "photo du plat",
+  "gal1.name": "Salade Fattoush",
+  "gal1.origin": "Liban",
+  "gal2.name": "Soufflé au fromage",
+  "gal3.name": "Risotto au safran",
+  "gal3.origin": "Italie",
+  "gal4.name": "Tajine d'agneau au cumin",
+  "gal4.origin": "Maroc",
+  "gal6.name": "Tarte aux fraises",
+  "stories.title": "Histoires",
+  "stories.intro": "Quatre cuisines, une seule table. Les recettes La Brélie viennent de cahiers, de cartes manuscrites, de gestes transmis et d'amitiés&nbsp;: Mami Belfort, Bonne Maman, Zina, Thierry et Arthur.",
+  "s1.title": "Le cahier usé",
+  "s1.body": "Un cahier à la couverture usée, aux quantités notées «&nbsp;à l'œil&nbsp;». Nous avons pesé, goûté, recommencé.",
+  "s2.title": "Quatre cuisines, une table",
+  "s2.body": "Le Sud de la France, la Bretagne, Paris et le Maghreb&nbsp;: des recettes qui ont tenu une table de quinze sans jamais faiblir.",
+  "s3.title": "Une amitié libanaise",
+  "s3.body": "Ces recettes ne viennent pas d'un voyage. Elles viennent d'une amitié, celle de Zina, et d'un amour pour son pays.",
+  "s4.title": "Pourquoi ce livre existe",
+  "s4.body": "L'amour de la cuisine. Et parce qu'une recette qui n'est pas écrite disparaît. 365 recettes, testées deux fois, parfois dix.",
+  "stories.link": "Découvrez les 365 recettes du livre →",
+  "faq.title": "Questions fréquentes",
+  "faq1.q": "Qu'est-ce que La Brélie&nbsp;?",
+  "faq1.a": "Un livre de cuisine de patrimoine familial associé à une application d'IA. Le livre rassemble les recettes de référence&nbsp;; l'application les fait vivre au quotidien&nbsp;: variations, menus, listes de courses et bien plus encore.",
+  "faq2.q": "Combien de recettes contient le livre&nbsp;?",
+  "faq2.a": "365 recettes, toutes essayées et testées de nombreuses fois par Thierry et Arthur. Les fondamentaux de la cuisine française, enrichis de recettes du monde entier.",
+  "faq3.q": "Comment fonctionne l'application&nbsp;?",
+  "faq3.a": "À définir.",
+  "faq4.q": "Quels systèmes d'exploitation sont pris en charge&nbsp;?",
+  "faq4.a": "iOS 16 et supérieur, Android 10 et supérieur.",
+  "faq5.q": "Où acheter le livre&nbsp;?",
+  "faq5.a": "Sur Amazon et dans les librairies partenaires.",
+  "news.p": "Actualités, lancements de l'application, recettes à l'honneur, coulisses et bien plus encore.",
+  "footer.tag": "Recettes de famille et saveurs du monde entier.",
+  "footer.follow": "Nous suivre",
+  "footer.legal": "Légal",
+  "footer.terms": "Conditions générales",
+  "footer.privacy": "Politique de confidentialité",
+  "footer.notice": "Mentions légales",
+  "footer.copy": "© 2026 La Brélie — Tous droits réservés."
+};
+
+  var i18nEls  = document.querySelectorAll("[data-i18n]");
+  var i18nAlts = document.querySelectorAll("[data-i18n-alt]");
+  i18nEls.forEach(function (el)  { el.setAttribute("data-en", el.innerHTML); });
+  i18nAlts.forEach(function (el) { el.setAttribute("data-en-alt", el.getAttribute("alt")); });
+
+  function applyLang(lang) {
+    document.documentElement.lang = lang;
+    i18nEls.forEach(function (el) {
+      var key = el.getAttribute("data-i18n");
+      el.innerHTML = (lang === "fr" && FR[key] !== undefined) ? FR[key] : el.getAttribute("data-en");
+    });
+    i18nAlts.forEach(function (el) {
+      var key = el.getAttribute("data-i18n-alt");
+      el.setAttribute("alt", (lang === "fr" && FR[key] !== undefined) ? FR[key] : el.getAttribute("data-en-alt"));
+    });
+    document.querySelectorAll(".lang-switch button").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false");
+    });
+    var close = document.getElementById("lightbox-close");
+    if (close) close.setAttribute("aria-label", lang === "fr" ? "Fermer" : "Close");
+
+    // The book cover has an English and a French version.
+    var cover = document.getElementById("book-cover");
+    if (cover) {
+      var want = cover.getAttribute(lang === "fr" ? "data-src-fr" : "data-src-en");
+      if (cover.getAttribute("src") !== want) cover.setAttribute("src", want);
+    }
+  }
+
+  function rememberLang(lang) {
+    try { localStorage.setItem("labrelie_lang", lang); } catch (e) {}
+    return lang;
+  }
+
+  function pickInitialLang() {
+    // 1) a link like labrelie.com/?lang=fr  2) the visitor's last choice  3) browser language
+    var q = "";
+    try { q = (new URLSearchParams(window.location.search).get("lang") || "").toLowerCase(); } catch (e) {}
+    if (q.indexOf("fr") === 0) return rememberLang("fr");
+    if (q.indexOf("en") === 0) return rememberLang("en");
+    try {
+      var saved = localStorage.getItem("labrelie_lang");
+      if (saved === "fr" || saved === "en") return saved;
+    } catch (e) {}
+    return ((navigator.language || "en").toLowerCase().indexOf("fr") === 0) ? "fr" : "en";
+  }
+
+  document.querySelectorAll(".lang-switch button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      applyLang(rememberLang(b.getAttribute("data-lang")));
+    });
+  });
+  applyLang(pickInitialLang());
+
+  // Load the other cover in the background so switching language is instant.
+  (function () {
+    var cover = document.getElementById("book-cover");
+    if (!cover) return;
+    ["data-src-en", "data-src-fr"].forEach(function (a) {
+      var u = cover.getAttribute(a);
+      if (u) { var img = new Image(); img.src = u; }
+    });
+  })();
 
   // Photo lightbox — click any photo to see it full-size, uncropped,
   // with its title on the left.

@@ -188,6 +188,14 @@
   <footer>© 2026 La Brélie</footer>
 
   <script>
+    // If the link carries a language (e.g. labrelie.com/?lang=fr), remember it
+    // so the main page opens in that language after the passcode.
+    try {
+      var qLang = (new URLSearchParams(window.location.search).get("lang") || "").toLowerCase();
+      if (qLang.indexOf("fr") === 0) localStorage.setItem("labrelie_lang", "fr");
+      else if (qLang.indexOf("en") === 0) localStorage.setItem("labrelie_lang", "en");
+    } catch (e) {}
+
     // Simple client-side passcode gate — not real security, just keeps
     // casual visitors from seeing the work-in-progress funnel.
     // Change the passcode by editing the value below.
