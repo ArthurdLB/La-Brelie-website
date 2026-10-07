@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Six recipes from the book — La Brélie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #F7F5F1; font-family: 'Karla', system-ui, sans-serif; color: #24282F; -webkit-font-smoothing: antialiased; }
+  a { color: #3D5A99; text-decoration: none; }
+  a:hover { color: #2C4275; }
+  img { max-width: 100%; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+  header { position: relative; display: flex; flex-direction: column; align-items: center; padding: 44px 24px 6px; }
+  .header-brand { display: flex; align-items: center; justify-content: center; gap: 14px; }
+  .header-brand img { width: 44px; height: auto; display: block; }
+  .header-brand span { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 36px; line-height: 1; color: #3D5A99; letter-spacing: .01em; }
+  .back-link { display: block; text-align: center; font-size: 13px; letter-spacing: .03em; margin: 24px 0 0; }
+
+  .lang-switch { position: absolute; top: 18px; right: 24px; display: flex; align-items: center; gap: 8px; font-size: 12.5px; letter-spacing: .12em; font-weight: 600; color: #C9C4BA; }
+  .lang-switch button { background: none; border: none; padding: 6px 2px; font: inherit; letter-spacing: inherit; color: #8A8F99; cursor: pointer; border-bottom: 1.5px solid transparent; }
+  .lang-switch button:hover { color: #3D5A99; }
+  .lang-switch button[aria-pressed="true"] { color: #3D5A99; border-bottom-color: #3D5A99; }
+  @media (max-width: 480px) { .lang-switch { top: 10px; right: 14px; } }
+
+  .page-head { max-width: 58ch; margin: 52px auto 0; text-align: center; }
+  .page-head h1 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(34px, 5vw, 50px); line-height: 1.1; margin: 0 0 14px; }
+  .page-head p { font-size: 16px; line-height: 1.7; color: #4B5563; margin: 0; }
+
+  .recipes { max-width: 860px; margin: 56px auto 0; border-top: 1px solid #E2DDD4; }
+  .recipe { border-bottom: 1px solid #E2DDD4; }
+  .recipe-toggle { width: 100%; display: flex; align-items: baseline; gap: 18px; background: none; border: none; padding: 26px 2px; cursor: pointer; text-align: left; font-family: inherit; }
+  .recipe-toggle .recipe-name { flex: 1; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.15; color: #3D5A99; }
+  .recipe-toggle .recipe-origin { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: #6B7280; font-weight: 600; white-space: nowrap; }
+  .recipe-toggle .recipe-sign { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; line-height: 1; color: #3D5A99; flex: none; width: 16px; text-align: center; }
+  .recipe-toggle:hover .recipe-name { color: #2C4275; }
+  .recipe-toggle:focus-visible { outline: 2px solid #3D5A99; outline-offset: 3px; }
+  .recipe-panel { padding: 0 2px 44px; }
+  .recipe-photo { aspect-ratio: 16/9; border-radius: 2px; overflow: hidden; background: #EDE9E2; cursor: zoom-in; margin-top: 26px; }
+  .recipe-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .recipe-photo.empty { display: flex; align-items: center; justify-content: center; cursor: default; }
+  .recipe-photo.empty span { font-size: 10.5px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: #6B7280; }
+
+  .recipe-meta { margin: 0; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 13px; color: #6B7280; }
+  .meta-item { position: relative; }
+  .meta-item + .meta-item::before { content: ""; position: absolute; left: -12px; top: 50%; width: 3px; height: 3px; border-radius: 50%; background: #C9C4BA; transform: translateY(-50%); }
+  .recipe-lede { margin: 16px 0 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; line-height: 1.5; color: #3D5A99; max-width: 62ch; }
+
+  .recipe-body { display: grid; grid-template-columns: 1fr 1.75fr; gap: 48px; margin-top: 34px; align-items: start; }
+  .sub { font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #24282F; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid #E2DDD4; }
+  .recipe-aside ul { list-style: none; margin: 0 0 30px; padding: 0; }
+  .recipe-aside li { font-size: 14.5px; line-height: 1.5; color: #363B42; padding: 7px 0; border-bottom: 1px solid rgba(226,221,212,.6); }
+  .recipe-aside ul:last-child { margin-bottom: 0; }
+  .recipe-method p { font-size: 15.5px; line-height: 1.8; color: #363B42; margin: 0 0 16px; max-width: 70ch; }
+  .recipe-method .sub { margin-top: 0; }
+  .recipe-method h3.sub + p { margin-top: 0; }
+  .recipe-method h3.sub:not(:first-child) { margin-top: 30px; }
+
+  .recipe-foot { margin-top: 30px; padding: 20px 22px; background: rgba(61,90,153,.04); border-radius: 3px; }
+  .recipe-foot p { margin: 0 0 8px; font-size: 13px; line-height: 1.65; color: #6B7280; }
+  .recipe-foot p:last-child { margin-bottom: 0; }
+  .fl { font-weight: 600; color: #24282F; }
+  .fl::after { content: " — "; font-weight: 400; color: #6B7280; }
+  .foot-extra { font-style: italic; }
+
+  .disclaimer { max-width: 760px; margin: 72px auto 0; padding: 18px 20px; border: 1px dashed rgba(61,90,153,.3); border-radius: 3px; font-size: 13px; line-height: 1.65; color: #6B7280; }
+
+  @media (max-width: 760px) {
+    .recipe-body { grid-template-columns: 1fr; gap: 30px; }
+    .recipe-toggle { flex-wrap: wrap; gap: 4px 14px; padding: 22px 2px; }
+    .recipe-toggle .recipe-name { flex: 1 1 100%; order: 2; }
+    .recipe-toggle .recipe-origin { order: 1; }
+    .recipe-toggle .recipe-sign { order: 1; margin-left: auto; }
+    .recipe-photo { aspect-ratio: 4/3; }
+  }
+
+  .lightbox { position: fixed; inset: 0; background: #101216; display: none; flex-direction: row; align-items: center; justify-content: center; gap: 44px; z-index: 999; padding: 28px 32px; cursor: zoom-out; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: calc(100vw - 480px); max-height: calc(100vh - 56px); width: auto; height: auto; object-fit: contain; border-radius: 2px; box-shadow: 0 20px 60px rgba(0,0,0,.45); cursor: default; flex: none; }
+  .lightbox-caption { flex: 0 1 300px; text-align: right; pointer-events: none; }
+  .lightbox-caption:empty { display: none; }
+  .lb-eyebrow { display: block; font-family: 'Karla', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.65); margin-bottom: 14px; }
+  .lb-title { display: block; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 46px; line-height: 1.1; color: #fff; }
+  .lightbox-close { position: absolute; top: 22px; right: 28px; width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255,255,255,.14); color: #fff; font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .lightbox-close:hover { background: rgba(255,255,255,.26); }
+  @media (max-width: 760px) {
+    .lightbox { flex-direction: column-reverse; gap: 16px; padding: 64px 16px 20px; }
+    .lightbox img { max-width: 94vw; max-height: calc(100vh - 190px); }
+    .lightbox-caption { flex: none; text-align: center; }
+    .lb-title { font-size: 32px; }
+  }
+
+  .page-foot { text-align: center; margin: 64px 0 0; }
+  .page-foot a { font-size: 15px; border-bottom: 1px solid rgba(61,90,153,.35); padding-bottom: 2px; }
+  footer { text-align: center; padding: 48px 24px 56px; font-size: 12px; color: #8A8F99; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="lang-switch" role="group" aria-label="Language">
+    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+    <span aria-hidden="true">|</span>
+    <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+  </div>
+  <div class="header-brand">
+    <img src="assets/logo-dlb-blue.png" alt="dLB">
+    <span>La Brélie</span>
+  </div>
+  <a class="back-link" href="preview.html" data-i18n="back">&larr; Back to La Brélie</a>
+</header>
+
+<div class="wrap">
+
+  <div class="page-head">
+    <h1 data-i18n="page.title">Six recipes from the book</h1>
+    <p data-i18n="page.intro">A first taste of <em>Recettes de Famille et Saveurs du Monde</em> — six dishes drawn from four kitchens, from Mami Belfort's notebook to a Lebanese friendship.</p>
+  </div>
+
+  <div class="recipes">
+    <article class="recipe" id="fattoush">
+      <button class="recipe-toggle" type="button" aria-expanded="false" aria-controls="fattoush-panel">
+        <span class="recipe-name" data-i18n="r1.title">Arthur's Fattoush Salad</span>
+        <span class="recipe-origin" data-i18n="r1.origin">Lebanon</span>
+        <span class="recipe-sign" aria-hidden="true">+</span>
+      </button>
+      <div class="recipe-panel" id="fattoush-panel" hidden>
+        <p class="recipe-meta"><span class="meta-item" data-i18n="r1.meta0">Serves 3–4</span><span class="meta-item" data-i18n="r1.meta1">Preparation 20 minutes</span></p>
+        
+        <div class="recipe-photo"><img src="assets/fattoush.jpg" alt="Arthur&#x27;s Fattoush Salad" data-i18n-alt="r1.title" loading="lazy"></div>
+        <div class="recipe-body">
+          <aside class="recipe-aside">
+            <h3 class="sub" data-i18n="h.ing">Ingredients</h3>
+            <ul><li data-i18n="r1.i0">300 g romaine lettuce</li><li data-i18n="r1.i1">300 g tomatoes (about 3 medium)</li><li data-i18n="r1.i2">200 g baby cucumber (Lebanese or Persian)</li><li data-i18n="r1.i3">150 g red pepper (2 medium)</li><li data-i18n="r1.i4">100 g radishes (about 5–6)</li><li data-i18n="r1.i5">2–3 spring onions (stalks)</li><li data-i18n="r1.i6">20 g fresh mint</li><li data-i18n="r1.i7">2 thin Lebanese pita breads</li><li data-i18n="r1.i8">60 ml olive oil, plus extra for brushing the pitas</li><li data-i18n="r1.i9">60 ml fresh lemon juice</li><li data-i18n="r1.i10">1½ teaspoons sumac</li><li data-i18n="r1.i11">1 tablespoon pomegranate molasses</li><li data-i18n="r1.i12">½ teaspoon salt</li><li data-i18n="r1.i13">¼ teaspoon pepper</li></ul>
+            <h3 class="sub" data-i18n="h.ust">Utensils</h3>
+            <ul><li data-i18n="r1.u0">A large salad bowl</li><li data-i18n="r1.u1">A chef's knife</li><li data-i18n="r1.u2">A chopping board</li><li data-i18n="r1.u3">A small bowl for the dressing</li></ul>
+          </aside>
+          <div class="recipe-method">
+            <h3 class="sub" data-i18n="h.method">Method</h3>
+            <p data-i18n="r1.m0">Preheat the oven to 200 °C. Split the pita breads open and tear them into uneven pieces of about 4 cm. Brush lightly with olive oil and sprinkle with salt, pepper and ½ teaspoon of sumac. Spread on a baking tray and toast in the oven for 5–7 minutes, until golden and crisp. Set aside.</p><p data-i18n="r1.m1">Cut the romaine lettuce into 2–3 cm ribbons. Cut the tomatoes into pieces of about 1 cm. Slice the cucumber into half-moons about ½ cm thick. Deseed the pepper and cut it into thin rings. Slice the radishes thinly. Slice the spring onions into rounds. Pull the mint leaves from their stalks and chop them roughly.</p><p data-i18n="r1.m2">Make the dressing: in a small bowl, mix the lemon juice, the pomegranate molasses, the remaining sumac (1 teaspoon), the pepper and the olive oil. Taste and adjust the seasoning to your liking.</p><p data-i18n="r1.m3">Put all the vegetables and herbs in the large salad bowl and pour over the dressing. Toss gently so everything is well coated. Just before serving, add the toasted pita pieces and toss quickly — they should stay crisp. Serve immediately.</p><h3 class="sub" data-i18n="h.notes">Notes</h3><p data-i18n="r1.notes">The secret of fattoush lies in the freshness of the ingredients and in the timing: the herbs should be lively, the vegetables crunchy, and above all the toasted pitas must be added only at the last moment so they keep their crunch.</p>
+          </div>
+        </div>
+        <div class="recipe-foot"><p><span class="fl" data-i18n="l.allerg">Allergens</span><span data-i18n="r1.allerg">Gluten (pita bread); may contain sulphites (pomegranate molasses) — none of the other 14 major allergens.</span></p><p><span class="fl" data-i18n="l.nutri">Nutritional values</span><span data-i18n="r1.nutri">Whole recipe (~1 kg of salad with pitas): ~1,420 kcal, ~24 g protein, ~142 g carbohydrate, ~79 g fat — that is, per serving (3 people) about 473 kcal, 8 g protein, 47 g carbohydrate, 26 g fat; per serving (4 people) about 355 kcal, 6 g protein, 36 g carbohydrate, 20 g fat.</span></p><p><span class="fl" data-i18n="l.diet">Dietary suitability</span><span data-i18n="r1.diet">Vegetarian, vegan, halal and kosher, subject to the certification of the processed ingredients (pita bread and pomegranate molasses).</span></p></div>
+      </div>
+    </article>
+    <article class="recipe" id="souffle">
+      <button class="recipe-toggle" type="button" aria-expanded="false" aria-controls="souffle-panel">
+        <span class="recipe-name" data-i18n="r2.title">Cheese Soufflé</span>
+        <span class="recipe-origin" data-i18n="r2.origin">France</span>
+        <span class="recipe-sign" aria-hidden="true">+</span>
+      </button>
+      <div class="recipe-panel" id="souffle-panel" hidden>
+        <p class="recipe-meta"><span class="meta-item" data-i18n="r2.meta0">Serves 4 or 5</span><span class="meta-item" data-i18n="r2.meta1">Preparation 20 minutes</span><span class="meta-item" data-i18n="r2.meta2">Cooking 20–25 minutes</span></p>
+        <p class="recipe-lede" data-i18n="r2.lede">The mixture can be made ahead, but only put it in to bake when you are ready to sit down.</p>
+        <div class="recipe-photo"><img src="assets/souffle.jpg" alt="Cheese Soufflé" data-i18n-alt="r2.title" loading="lazy"></div>
+        <div class="recipe-body">
+          <aside class="recipe-aside">
+            <h3 class="sub" data-i18n="h.ing">Ingredients</h3>
+            <ul><li data-i18n="r2.i0">30 g plain flour, potato starch or cornflour</li><li data-i18n="r2.i1">150 g butter</li><li data-i18n="r2.i2">500 ml milk</li><li data-i18n="r2.i3">5 eggs</li><li data-i18n="r2.i4">150 g grated Emmental, Gruyère or Comté</li><li data-i18n="r2.i5">Salt, pepper and 1 pinch of nutmeg</li></ul>
+            <h3 class="sub" data-i18n="h.ust">Utensils</h3>
+            <ul><li data-i18n="r2.u0">A soufflé dish</li><li data-i18n="r2.u1">A saucepan</li><li data-i18n="r2.u2">A whisk</li><li data-i18n="r2.u3">A bowl for separating the eggs</li><li data-i18n="r2.u4">A wooden spoon</li></ul>
+          </aside>
+          <div class="recipe-method">
+            <h3 class="sub" data-i18n="h.method">Method</h3>
+            <p data-i18n="r2.m0">Melt the butter, broken into pieces, in a saucepan, then take it off the heat and stir in the flour until smooth.</p><p data-i18n="r2.m1">Meanwhile, heat the milk. Once it boils, pour it little by little onto the flour, stirring constantly so the mixture stays perfectly smooth. Return to the heat and cook, still stirring. When the mixture is thick and smooth, take the pan off the heat and turn the oven on to gas mark 7 (about 210 °C).</p><p data-i18n="r2.m2">Separate the yolks from the whites. Beat the whites to very stiff peaks (add a grain of salt to help). Stir the yolks into the cooled mixture one at a time, beating energetically. Add the cheese.</p><p data-i18n="r2.m3">Then fold in the beaten whites, lifting the mixture as you go. No lumps of the base should remain, but some white should still show so the soufflé rises well.</p><p data-i18n="r2.m4">Butter the base and sides of the dish generously and dust it with flour.</p><p data-i18n="r2.m5">Pour in the mixture and put it straight into the oven for 20 to 25 minutes.</p><p data-i18n="r2.m6">Do not open the oven door. After 15 minutes you can lower the heat a little if it is browning too quickly. As soon as the soufflé is cooked, turn the oven off and open the door a crack, then open it further minute by minute.</p>
+          </div>
+        </div>
+        <div class="recipe-foot"><p><span class="fl" data-i18n="l.allerg">Allergens</span><span data-i18n="r2.allerg">Gluten (flour) — Eggs — Milk (500 ml plus 150 g cheese) — none of the other 14 major allergens.</span></p><p><span class="fl" data-i18n="l.nutri">Nutritional values</span><span data-i18n="r2.nutri">Whole recipe: ~2,488 kcal, ~95 g protein, ~52 g carbohydrate, ~218 g fat — that is, per serving (4 people) about 622 kcal, 24 g protein, 13 g carbohydrate, 55 g fat; per serving (5 people) about 498 kcal, 19 g protein, 10 g carbohydrate, 44 g fat.</span></p><p><span class="fl" data-i18n="l.diet">Dietary suitability</span><span data-i18n="r2.diet">Vegetarian, halal and kosher, subject to the certification of the processed ingredients (butter and cheese).</span></p></div>
+      </div>
+    </article>
+    <article class="recipe" id="risotto">
+      <button class="recipe-toggle" type="button" aria-expanded="false" aria-controls="risotto-panel">
+        <span class="recipe-name" data-i18n="r3.title">Arthur's Saffron Risotto</span>
+        <span class="recipe-origin" data-i18n="r3.origin">Italy</span>
+        <span class="recipe-sign" aria-hidden="true">+</span>
+      </button>
+      <div class="recipe-panel" id="risotto-panel" hidden>
+        <p class="recipe-meta"><span class="meta-item" data-i18n="r3.meta0">Serves 4</span><span class="meta-item" data-i18n="r3.meta1">Preparation 20 minutes</span><span class="meta-item" data-i18n="r3.meta2">Cooking 1 hour</span></p>
+        
+        <div class="recipe-photo"><img src="assets/saffron-risotto.jpg" alt="Arthur&#x27;s Saffron Risotto" data-i18n-alt="r3.title" loading="lazy"></div>
+        <div class="recipe-body">
+          <aside class="recipe-aside">
+            <h3 class="sub" data-i18n="h.ing">Ingredients</h3>
+            <ul><li data-i18n="r3.i0">200 g Arborio rice</li><li data-i18n="r3.i1">1 litre hot chicken stock</li><li data-i18n="r3.i2">1 sachet of saffron</li><li data-i18n="r3.i3">2 tablespoons olive oil</li><li data-i18n="r3.i4">100 ml dry white wine</li><li data-i18n="r3.i5">1 shallot, finely chopped</li><li data-i18n="r3.i6">60 g cold butter</li><li data-i18n="r3.i7">80 g freshly grated Parmesan</li><li data-i18n="r3.i8">Salt, pepper</li></ul>
+            <h3 class="sub" data-i18n="h.ust">Utensils</h3>
+            <ul><li data-i18n="r3.u0">A large saucepan for the stock, kept hot</li><li data-i18n="r3.u1">A large saucepan for the risotto</li><li data-i18n="r3.u2">A wooden spoon</li><li data-i18n="r3.u3">A ladle</li><li data-i18n="r3.u4">A mortar and pestle, for the saffron</li><li data-i18n="r3.u5">A knife and chopping board</li></ul>
+          </aside>
+          <div class="recipe-method">
+            <h3 class="sub" data-i18n="h.method">Method</h3>
+            <p data-i18n="r3.m0">Pour the chicken stock into a saucepan and keep it hot over a low heat. Using a mortar and pestle, grind the saffron to a fine powder, then stir it into the stock so it releases all its colour and scent.</p><p data-i18n="r3.m1">In a large saucepan, heat the olive oil over a medium heat. Add the shallot and soften it for 3 to 4 minutes without letting it colour. Add the rice and stir for 2 to 3 minutes, until every grain is coated in oil and turns slightly translucent.</p><p data-i18n="r3.m2">Add the white wine and let it reduce almost completely, stirring as it goes.</p><p data-i18n="r3.m3">Now start adding the hot stock, one ladleful at a time. Wait until the liquid is almost entirely absorbed before adding the next, stirring regularly. Carry on until the rice is tender but still slightly firm in the centre. This takes about 45 to 50 minutes.</p><p data-i18n="r3.m4">Take the pan off the heat. Add the cold butter in pieces and the grated Parmesan, then beat vigorously until the risotto is creamy and glossy. Taste and adjust with salt and pepper if needed.</p><p data-i18n="r3.m5">Serve immediately, with extra freshly grated Parmesan if you like.</p>
+          </div>
+        </div>
+        <div class="recipe-foot"><p><span class="fl" data-i18n="l.allerg">Allergens</span><span data-i18n="r3.allerg">Milk (60 g butter, 80 g Parmesan) — Sulphites (white wine) — Possible gluten, depending on the brand of shop-bought chicken stock — none of the other 14 major allergens.</span></p><p><span class="fl" data-i18n="l.nutri">Nutritional values</span><span data-i18n="r3.nutri">Whole recipe: ~1,569 kcal, ~55 g protein, ~75 g carbohydrate, ~107 g fat — that is, per serving (4 people) about 392 kcal, 14 g protein, 19 g carbohydrate, 27 g fat.</span></p><p><span class="fl" data-i18n="l.diet">Dietary suitability</span><span data-i18n="r3.diet">Kosher, subject to the certification of the processed ingredients (stock, butter, Parmesan).</span></p></div>
+      </div>
+    </article>
+    <article class="recipe" id="tajine">
+      <button class="recipe-toggle" type="button" aria-expanded="false" aria-controls="tajine-panel">
+        <span class="recipe-name" data-i18n="r4.title">Cumin Lamb Tagine</span>
+        <span class="recipe-origin" data-i18n="r4.origin">Morocco</span>
+        <span class="recipe-sign" aria-hidden="true">+</span>
+      </button>
+      <div class="recipe-panel" id="tajine-panel" hidden>
+        <p class="recipe-meta"><span class="meta-item" data-i18n="r4.meta0">Serves 4</span><span class="meta-item" data-i18n="r4.meta1">Preparation 30 minutes</span><span class="meta-item" data-i18n="r4.meta2">Cooking 3 hours</span></p>
+        
+        <div class="recipe-photo empty"><span data-i18n="r4.nophoto">dish photo</span></div>
+        <div class="recipe-body">
+          <aside class="recipe-aside">
+            <h3 class="sub" data-i18n="h.ing">Ingredients</h3>
+            <ul><li data-i18n="r4.i0">800 g lamb shoulder, in pieces</li><li data-i18n="r4.i1">670 g onions</li><li data-i18n="r4.i2">2 tablespoons olive oil</li><li data-i18n="r4.i3">Salt</li><li data-i18n="r4.i4">2 teaspoons cumin seeds</li><li data-i18n="r4.i5">⅔ teaspoon ground ginger</li><li data-i18n="r4.i6">⅔ teaspoon coriander seeds</li><li data-i18n="r4.i7">⅓ teaspoon mild chilli</li><li data-i18n="r4.i8">1.5 g saffron</li><li data-i18n="r4.i9">1 to 2 garlic cloves</li><li data-i18n="r4.i10">1 to 2 preserved lemons</li><li data-i18n="r4.i11">The juice of ½ to 1 lemon</li><li data-i18n="r4.i12">65 g black olives</li></ul>
+            <h3 class="sub" data-i18n="h.ust">Utensils</h3>
+            <ul><li data-i18n="r4.u0">A mortar and pestle</li><li data-i18n="r4.u1">A tagine dish, or a tagine pot with a conical lid</li><li data-i18n="r4.u2">A knife and chopping board</li></ul>
+          </aside>
+          <div class="recipe-method">
+            <h3 class="sub" data-i18n="h.method">Method</h3>
+            <p data-i18n="r4.m0">In a mortar, crush the garlic and all the spices together.</p><p data-i18n="r4.m1">In a tagine dish, arrange the pieces of meat, cut into quarters, and the preserved lemons, then pour over the olive oil and the lemon juice. Scatter over the crushed garlic and spices and season with salt. Cover. Bring to the heat and cook very gently for at least 3 hours, counting from the moment it comes to the boil.</p><p data-i18n="r4.m2">In the remaining oil, soften the sliced onions; they should not take on any colour. Once they have melted right down, tip them over the meat with the black olives, 15 minutes before the end of the cooking.</p><p data-i18n="r4.m3">Serve with rice.</p>
+          </div>
+        </div>
+        <div class="recipe-foot"><p><span class="fl" data-i18n="l.allerg">Allergens</span><span data-i18n="r4.allerg">None of the 14 major allergens identified.</span></p><p><span class="fl" data-i18n="l.nutri">Nutritional values</span><span data-i18n="r4.nutri">Whole recipe: ~2,189 kcal, ~178 g protein, ~87 g carbohydrate, ~113 g fat — that is, per serving (4 people) about 547 kcal, 45 g protein, 22 g carbohydrate, 28 g fat.</span></p><p><span class="fl" data-i18n="l.diet">Dietary suitability</span><span data-i18n="r4.diet">Halal and kosher, subject to the certification of the lamb.</span></p></div>
+      </div>
+    </article>
+    <article class="recipe" id="tatin">
+      <button class="recipe-toggle" type="button" aria-expanded="false" aria-controls="tatin-panel">
+        <span class="recipe-name" data-i18n="r5.title">Tarte Tatin</span>
+        <span class="recipe-origin" data-i18n="r5.origin">Sologne</span>
+        <span class="recipe-sign" aria-hidden="true">+</span>
+      </button>
+      <div class="recipe-panel" id="tatin-panel" hidden>
+        <p class="recipe-meta"><span class="meta-item" data-i18n="r5.meta0">Serves 6</span><span class="meta-item" data-i18n="r5.meta1">Preparation 1 hr 30</span><span class="meta-item" data-i18n="r5.meta2">Cooking 45 minutes to 1 hour</span></p>
+        
+        <div class="recipe-photo"><img src="assets/tarte-tatin.jpg" alt="Tarte Tatin" data-i18n-alt="r5.title" loading="lazy"></div>
+        <div class="recipe-body">
+          <aside class="recipe-aside">
+            <h3 class="sub" data-i18n="h.ing">Ingredients</h3>
+            <ul><li data-i18n="r5.i0">300 g shortcrust pastry, or 300 g puff pastry</li><li data-i18n="r5.i1">90 g butter</li><li data-i18n="r5.i2">1.4 kg Granny Smith apples, peeled and quartered</li><li data-i18n="r5.i3">100 g sugar</li><li data-i18n="r5.i4">Crème fraîche, to serve</li></ul>
+            <h3 class="sub" data-i18n="h.ust">Utensils</h3>
+            <ul><li data-i18n="r5.u0">A tarte Tatin tin, or a round tin that can go on the hob</li><li data-i18n="r5.u1">A rolling pin</li><li data-i18n="r5.u2">A cooling rack</li><li data-i18n="r5.u3">A serving plate</li></ul>
+          </aside>
+          <div class="recipe-method">
+            <h3 class="sub" data-i18n="h.method">Method</h3>
+            <p data-i18n="r5.m0">Preheat the oven to 190 °C.</p><p data-i18n="r5.m1">Melt the butter in the tin, sprinkle over half the sugar, arrange the apple quarters inside and sprinkle over the remaining sugar.</p><p data-i18n="r5.m2">Put the tin straight onto the hob to start the sugar caramelising.</p><p data-i18n="r5.m3">Cook for about 15 minutes, until it takes on a pale golden colour.</p><p data-i18n="r5.m4">Roll the pastry out into a circle larger than the tin. Cover the apples with it and tuck it in around them, then bake for about 20 minutes to brown the pastry. Take the tart out and let it rest for about 15 to 20 minutes before turning it out.</p><p data-i18n="r5.m5">Put the tin back on the hob for a few minutes to soften the caramel, then turn the tart out onto a serving plate.</p><p data-i18n="r5.m6">Serve the tarte Tatin warm, with crème fraîche.</p><h3 class="sub" data-i18n="h.var">Variations</h3><p data-i18n="r5.var">You can vary this recipe in several ways: increase the butter or the sugar, use puff pastry instead of shortcrust, or replace the apples with other fruit (pears, mangoes).</p>
+          </div>
+        </div>
+        <div class="recipe-foot"><p><span class="fl" data-i18n="l.allerg">Allergens</span><span data-i18n="r5.allerg">Gluten (shortcrust or puff pastry) — Milk (90 g butter, crème fraîche to serve) — none of the other 14 major allergens.</span></p><p><span class="fl" data-i18n="l.nutri">Nutritional values</span><span data-i18n="r5.nutri">Whole recipe (300 g pastry + 90 g butter + 1.4 kg apples + 100 g sugar, excluding the crème fraîche to serve): ~2,982 kcal, ~19 g protein, ~405 g carbohydrate, ~148 g fat — that is, per serving (6 people) about 497 kcal, 3 g protein, 68 g carbohydrate, 25 g fat.</span></p><p><span class="fl" data-i18n="l.diet">Dietary suitability</span><span data-i18n="r5.diet">Vegetarian, halal and kosher.</span></p><p class="foot-extra" data-i18n="r5.extra">Variations (pears, mangoes, more butter or sugar, puff pastry): same allergens and dietary suitability, with nutritional values adjusted to the fruit and the quantities.</p></div>
+      </div>
+    </article>
+    <article class="recipe" id="fraises">
+      <button class="recipe-toggle" type="button" aria-expanded="false" aria-controls="fraises-panel">
+        <span class="recipe-name" data-i18n="r6.title">The Ritz Strawberry Tart</span>
+        <span class="recipe-origin" data-i18n="r6.origin">France</span>
+        <span class="recipe-sign" aria-hidden="true">+</span>
+      </button>
+      <div class="recipe-panel" id="fraises-panel" hidden>
+        <p class="recipe-meta"><span class="meta-item" data-i18n="r6.meta0">Serves 6</span><span class="meta-item" data-i18n="r6.meta1">Preparation 25 minutes</span><span class="meta-item" data-i18n="r6.meta2">Cooking 15 minutes</span></p>
+        
+        <div class="recipe-photo"><img src="assets/strawberry-tart.jpg" alt="The Ritz Strawberry Tart" data-i18n-alt="r6.title" loading="lazy"></div>
+        <div class="recipe-body">
+          <aside class="recipe-aside">
+            <h3 class="sub" data-i18n="h.ing">Ingredients</h3>
+            <ul><li data-i18n="r6.i0">250 g strawberries, cut lengthways into 3</li><li data-i18n="r6.i1">50 g redcurrant and raspberry jelly</li><li data-i18n="r6.i2">50 ml kirsch</li><li data-i18n="r6.i3">1 beaten egg</li><li data-i18n="r6.i4">250 g crème pâtissière flavoured with kirsch</li><li data-i18n="r6.i5">(or 250 g Chantilly cream flavoured with vanilla sugar)</li><li data-i18n="r6.i6">300 g sweet shortcrust pastry</li><li data-i18n="r6.i7">Mint, verbena or acacia flowers, to decorate</li></ul>
+            <h3 class="sub" data-i18n="h.ust">Utensils</h3>
+            <ul><li data-i18n="r6.u0">A tart tin</li><li data-i18n="r6.u1">A rolling pin</li><li data-i18n="r6.u2">Baking parchment</li><li data-i18n="r6.u3">A spoon or spatula</li><li data-i18n="r6.u4">A cooling rack</li><li data-i18n="r6.u5">A bowl for the jelly</li></ul>
+          </aside>
+          <div class="recipe-method">
+            <h3 class="sub" data-i18n="h.method">Method</h3>
+            <p data-i18n="r6.m0">Preheat the oven to 180 °C. Roll out the pastry and line the tart tin with it. Cover the pastry with baking parchment, then spread over a good layer of dried beans to stop it rising. Crimp the edges and bake blind for 10 minutes. Remove the parchment and the beans. Brush the tart base with beaten egg and return it to the oven for 5 minutes.</p><p data-i18n="r6.m1">Unmould the pastry case and leave it to cool on a rack.</p><p data-i18n="r6.m2">In a saucepan, melt the redcurrant and raspberry jelly, then let it cool to lukewarm. Now add the kirsch.</p><p data-i18n="r6.m3">When the pastry case is cold, spread the base with a layer of crème pâtissière or Chantilly cream. Arrange the strawberries in concentric circles, starting from the outside. Coat them with the jelly. Decorate with mint, shredded verbena or acacia flowers.</p>
+          </div>
+        </div>
+        <div class="recipe-foot"><p><span class="fl" data-i18n="l.allerg">Allergens</span><span data-i18n="r6.allerg">Gluten (sweet shortcrust pastry) — Milk (butter in the pastry, crème pâtissière) — Eggs (egg wash, crème pâtissière) — Sulphites and alcohol (kirsch) — none of the other 14 major allergens.</span></p><p><span class="fl" data-i18n="l.nutri">Nutritional values</span><span data-i18n="r6.nutri">Whole recipe (250 g strawberries + 50 g jelly + 50 ml kirsch + 250 g crème pâtissière + 300 g sweet shortcrust pastry + egg wash): ~2,250 kcal, ~26 g protein, ~143 g carbohydrate, ~129 g fat — that is, per serving (6 people) about 375 kcal, 4 g protein, 24 g carbohydrate, 21 g fat.</span></p><p><span class="fl" data-i18n="l.diet">Dietary suitability</span><span data-i18n="r6.diet">Vegetarian and kosher, subject to the certification of the kirsch.</span></p></div>
+      </div>
+    </article>
+  </div>
+
+  <p class="disclaimer" data-i18n="disclaimer">Nutritional values are estimates generated by AI from the ingredient lists. They are given as a guide only and are not intended for medical or therapeutic use. Always check the ingredients against your own allergies and dietary needs.</p>
+
+  <p class="page-foot"><a href="preview.html" data-i18n="foot.link">&larr; Back to La Brélie</a></p>
+
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<footer data-i18n="footer.copy">© 2026 La Brélie — All rights reserved.</footer>
+
+<script>
+  // Passcode gate check — if this page is opened directly without the
+  // correct passcode entered on index.html, bounce back to the gate.
+  if (localStorage.getItem("labrelie_gate_ok") !== "true") {
+    window.location.href = "index.html";
+  }
+
+  // ---------- Language: English / French ----------
+  // The English text lives in the page itself; the French is below.
+  var FR = {
+  "r1.title": "Salade fattoush d’Arthur",
+  "r1.meta0": "Pour 3-4 personnes",
+  "r1.meta1": "Préparation : 20 minutes",
+  "r1.i0": "300 g de laitue romaine",
+  "r1.i1": "300 g de tomates (environ 3 moyennes)",
+  "r1.i2": "200 g de mini concombre (libanais ou perse)",
+  "r1.i3": "150 g de poivron rouge (2 moyens)",
+  "r1.i4": "100 g de radis (environ 5-6)",
+  "r1.i5": "2-3 oignons verts (tiges)",
+  "r1.i6": "20 g de menthe fraîche",
+  "r1.i7": "2 pains pita libanais fins",
+  "r1.i8": "60 ml d'huile d'olive, plus extra pour badigeonner les pitas",
+  "r1.i9": "60 ml de jus de citron frais",
+  "r1.i10": "1½ cuillerées à café de sumac",
+  "r1.i11": "1 cuillerée à soupe de mélasse de grenade",
+  "r1.i12": "½ cuillerée à café de sel",
+  "r1.i13": "¼ cuillerée à café de poivre",
+  "r1.u0": "Un grand saladier",
+  "r1.u1": "Un couteau de chef",
+  "r1.u2": "Une planche à découper",
+  "r1.u3": "Un petit bol pour la vinaigrette",
+  "r1.m0": "Préchauffez le four à 200 °C. Séparez les pains pita et déchirez-les en morceaux irréguliers d'environ 4 cm. Badigeonnez légèrement d'huile d'olive, saupoudrez de sel, poivre et ½ cuillerée à café de sumac. Disposez sur une tôle à pâtisserie et faites griller au four 5-7 minutes jusqu'à ce qu'ils deviennent dorés et croustillants. Réservez.",
+  "r1.m1": "Découpez la laitue romaine en lamelles de 2-3 cm. Coupez les tomates en morceaux d'environ 1 cm. Détaillez le concombre en demi-rondelles d'environ ½ cm d'épaisseur. Épépinez le poivron et découpez-le en fines rondelles. Émincez les radis en rondelles fines. Découpez les oignons verts en rondelles. Détachez les feuilles de menthe de leurs tiges et détaillez-les grossièrement.",
+  "r1.m2": "Préparez la vinaigrette : mélangez dans un petit bol le jus de citron, la mélasse de grenade, le reste du sumac (1 cuillerée à café), le poivre et l'huile d'olive. Goûtez et ajustez l'assaisonnement selon vos préférences.",
+  "r1.m3": "Disposez tous les légumes et les herbes dans le grand saladier et versez la vinaigrette. Mélangez délicatement pour bien enrober tous les ingrédients. Juste avant de servir, ajoutez les morceaux de pita grillés et mélangez rapidement — ils doivent rester croustillants. Servez immédiatement.",
+  "h.notes": "Notes",
+  "r1.notes": "Le secret du fattoush réside dans la fraîcheur des ingrédients et le timing : les herbes doivent être vives, les légumes croquants, et surtout, les pitas grillés ne doivent être ajoutés qu'au dernier moment pour conserver leur croustillant.",
+  "l.allerg": "Allergènes",
+  "r1.allerg": "Gluten (pain pita) ; peut contenir des sulfites (mélasse de grenade) — aucun autre allergène des 14 majeurs.",
+  "l.nutri": "Valeurs nutritionnelles",
+  "r1.nutri": "Recette entière (~1 kg de salade avec pitas) : ~1,420 kcal, ~24 g protéines, ~142 g glucides, ~79 g lipides — soit par portion (3 pers.) environ 473 kcal, 8 g protéines, 47 g glucides, 26 g lipides ; par portion (4 pers.) environ 355 kcal, 6 g protéines, 36 g glucides, 20 g lipides.",
+  "l.diet": "Régimes",
+  "r1.diet": "Végétarien, Végan, Halal et Casher selon certifications des ingrédients transformés (pain pita et mélasse de grenade).",
+  "r1.origin": "Liban",
+  "h.ing": "Ingrédients",
+  "h.ust": "Ustensiles",
+  "h.method": "Préparation",
+  "r2.title": "Soufflé au fromage",
+  "r2.meta0": "Pour 4 ou 5 personnes",
+  "r2.meta1": "Préparation : 20 minutes",
+  "r2.meta2": "Cuisson : 20-25 minutes",
+  "r2.lede": "On ne met à cuire la préparation faite à l'avance que lorsqu’on est prêt à passer à table.",
+  "r2.i0": "30 g de farine ou fécule ou maïzena",
+  "r2.i1": "150 g de beurre",
+  "r2.i2": "5 dl de lait",
+  "r2.i3": "5 œufs",
+  "r2.i4": "150 g d’emmental, de gruyère ou de comté râpé",
+  "r2.i5": "Sel, poivre et 1 pincée de muscade",
+  "r2.u0": "Un moule à soufflé",
+  "r2.u1": "Une casserole",
+  "r2.u2": "Un fouet",
+  "r2.u3": "Un bol pour séparer les œufs",
+  "r2.u4": "Une cuillère en bois",
+  "r2.m0": "Faites fondre le beurre émietté dans une casserole et retirez du feu pour y incorporer la farine sans grumeaux.",
+  "r2.m1": "Pendant ce temps, faites chauffer le lait. Lorsqu'il est bouillant, versez-le petit à petit dans la farine, sans cesser de tourner pour que la pâte soit bien lisse. Remettez sur le feu et faites cuire, en continuant toujours de tourner. Lorsque l'appareil est épais et bien lisse, retirez la casserole du feu et allumez le four à thermostat 7.",
+  "r2.m2": "Séparez les jaunes des blancs des œufs. Battez les blancs en une neige très ferme (ajoutez-y un grain de sel pour cela). Incorporez les jaunes un par un dans la pâte tiédie, que vous tournez énergiquement. Ajoutez la garniture de fromage.",
+  "r2.m3": "Puis ajoutez les blancs en neige, en soulevant la pâte. Il ne doit pas rester de grumeaux de pâte mais subsister du blanc pour que le soufflé monte bien.",
+  "r2.m4": "Beurrez largement le fond et les bords du moule et tapissez-le de farine.",
+  "r2.m5": "Versez-y la préparation, que vous mettez aussitôt au four pour 20 à 25 minutes.",
+  "r2.m6": "Il ne faut pas ouvrir la porte du four. Au bout de 15 minutes vous pouvez baisser un peu la chaleur si cela dore trop vite. Dès que le soufflé est cuit, éteignez et entrouvrez la porte, pour l'ouvrir progressivement de minute en minute.",
+  "r2.allerg": "Gluten (farine) — Œufs — Lait (500 ml plus 150 g fromage) — aucun autre allergène des 14 majeurs.",
+  "r2.nutri": "Recette entière : ~2,488 kcal, ~95 g protéines, ~52 g glucides, ~218 g lipides — soit par portion (4 pers.) environ 622 kcal, 24 g protéines, 13 g glucides, 55 g lipides ; par portion (5 pers.) environ 498 kcal, 19 g protéines, 10 g glucides, 44 g lipides.",
+  "r2.diet": "Végétarien, Halal et Casher selon certifications des ingrédients transformés (beurre et fromage).",
+  "r2.origin": "France",
+  "r3.title": "Risotto au safran d’Arthur",
+  "r3.meta0": "Pour 4 personnes",
+  "r3.meta1": "Préparation : 20 minutes",
+  "r3.meta2": "Cuisson : 1 heure",
+  "r3.i0": "200 g de riz Arborio",
+  "r3.i1": "1 litre de bouillon de volaille chaud",
+  "r3.i2": "1 dose de safran",
+  "r3.i3": "2 cuillères à soupe d'huile d'olive",
+  "r3.i4": "100 ml de vin blanc sec",
+  "r3.i5": "1 échalote, finement ciselée",
+  "r3.i6": "60 g de beurre froid",
+  "r3.i7": "80 g de parmesan fraîchement râpé",
+  "r3.i8": "Sel, poivre",
+  "r3.u0": "Une grande casserole pour le bouillon (à maintenir chaud)",
+  "r3.u1": "Une grande casserole pour le risotto",
+  "r3.u2": "Une cuillère en bois",
+  "r3.u3": "Une louche",
+  "r3.u4": "Un mortier et pilon (pour le safran)",
+  "r3.u5": "Un couteau et planche à découper",
+  "r3.m0": "Versez le bouillon de volaille dans une casserole et maintenez-le bien chaud à feu doux. À l'aide d'un mortier et d'un pilon, réduisez le safran en poudre fine, puis incorporez-le au bouillon afin qu'il diffuse toute sa couleur et son parfum.",
+  "r3.m1": "Dans une grande casserole, faites chauffer l'huile d'olive à feu moyen. Ajoutez l'échalote et faites-la revenir pendant 3 à 4 minutes jusqu'à ce qu'elle soit tendre, sans coloration. Versez le riz et remuez pendant 2 à 3 minutes afin que chaque grain soit bien enrobé d'huile et devienne légèrement translucide.",
+  "r3.m2": "Ajoutez le vin blanc et laissez-le réduire presque entièrement tout en remuant.",
+  "r3.m3": "Commencez ensuite à incorporer le bouillon chaud, une louche à la fois. Attendez que le liquide soit presque totalement absorbé avant d'ajouter la louche suivante, en remuant régulièrement. Poursuivez ainsi jusqu'à ce que le riz soit fondant tout en restant légèrement ferme au centre. Cette étape prend environ 45 à 50 minutes.",
+  "r3.m4": "Retirez la casserole du feu. Ajoutez le beurre froid en morceaux et le parmesan râpé, puis mélangez vigoureusement jusqu'à obtenir un risotto onctueux et brillant. Goûtez et rectifiez l'assaisonnement avec du sel et du poivre si nécessaire.",
+  "r3.m5": "Servez immédiatement, accompagné d'un supplément de parmesan fraîchement râpé si vous le souhaitez.",
+  "r3.allerg": "Lait (beurre 60 g, parmesan 80 g) — Sulfites (vin blanc) — Gluten possible selon marque du bouillon de volaille du commerce — aucun autre allergène des 14 majeurs.",
+  "r3.nutri": "Recette entière : ~1,569 kcal, ~55 g protéines, ~75 g glucides, ~107 g lipides — soit par portion (4 pers.) environ 392 kcal, 14 g protéines, 19 g glucides, 27 g lipides.",
+  "r3.diet": "Casher selon certifications des ingrédients transformés (bouillon, beurre, parmesan).",
+  "r3.origin": "Italie",
+  "r4.title": "Tajine d’agneau au cumin",
+  "r4.nophoto": "photo du plat",
+  "r4.meta0": "Pour 4 personnes",
+  "r4.meta1": "Préparation : 30 minutes",
+  "r4.meta2": "Cuisson : 3 heures",
+  "r4.i0": "800 g d'épaule d'agneau en morceaux",
+  "r4.i1": "670 g d'oignons",
+  "r4.i2": "2 cuillères à soupe d'huile d'olive",
+  "r4.i3": "Sel",
+  "r4.i4": "2 cuillères à café de cumin en grains",
+  "r4.i5": "2/3 de cuillère à café de gingembre en poudre",
+  "r4.i6": "2/3 de cuillère à café de coriandre en grains",
+  "r4.i7": "1/3 de cuillère à café de piment doux",
+  "r4.i8": "1,5 g de safran",
+  "r4.i9": "1 à 2 gousses d'ail",
+  "r4.i10": "1 à 2 citrons confits",
+  "r4.i11": "Le jus d'1/2 à 1 citron",
+  "r4.i12": "65 g d'olives noires",
+  "r4.u0": "Mortier et pilon",
+  "r4.u1": "Moule à tajine (ou plat à tajine avec couvercle conique)",
+  "r4.u2": "Couteau et planche à découper",
+  "r4.m0": "Dans un mortier, piler l'ail et toutes les épices.",
+  "r4.m1": "Dans un moule à tajine, disposer les morceaux de viande coupés en quatre, les citrons confits, arroser avec l'huile d'olive et le jus de citron. Saupoudrer avec l'ail et les épices pilés, saler. Couvrir. Porter sur le feu et laisser cuire tout doucement, 3 heures au moins, à partir de l'ébullition.",
+  "r4.m2": "Dans le reste de l'huile, faire fondre les oignons émincés, ils ne doivent pas prendre couleur. Lorsqu'ils sont bien fondus, les verser sur la viande avec les olives noires, 15 minutes avant la fin de la cuisson.",
+  "r4.m3": "Servir avec un riz.",
+  "r4.allerg": "Aucun des 14 allergènes majeurs identifié.",
+  "r4.nutri": "Recette entière : ~2,189 kcal, ~178 g protéines, ~87 g glucides, ~113 g lipides — soit par portion (4 pers.) environ 547 kcal, 45 g protéines, 22 g glucides, 28 g lipides.",
+  "r4.diet": "Halal et Casher selon la certification de l'agneau.",
+  "r4.origin": "Maroc",
+  "r5.title": "Tarte Tatin",
+  "r5.meta0": "Pour 6 personnes",
+  "r5.meta1": "Préparation : 1 h 30",
+  "r5.meta2": "Cuisson : 45 minutes à 1 h",
+  "r5.i0": "300 g de pâte brisée ou 300 g de pâte feuilletée",
+  "r5.i1": "90 g de beurre",
+  "r5.i2": "1,4 kg de pommes granny smith épluchées et coupées en quartiers",
+  "r5.i3": "100 g de sucre",
+  "r5.i4": "Crème fraîche (pour le service)",
+  "r5.u0": "Un moule à tarte Tatin (ou moule rond allant au feu)",
+  "r5.u1": "Un rouleau à pâtisserie",
+  "r5.u2": "Une grille de refroidissement",
+  "r5.u3": "Un plat de service",
+  "r5.m0": "Préchauffez le four à 190 °C.",
+  "r5.m1": "Faites fondre le beurre dans le moule, saupoudrez avec la moitié du sucre, rangez les quartiers de pommes dedans et saupoudrez avec le sucre restant.",
+  "r5.m2": "Mettez le moule directement sur le feu pour commencer la caramélisation du sucre.",
+  "r5.m3": "Laissez cuire environ 15 minutes jusqu'à l'obtention d'une coloration blond clair.",
+  "r5.m4": "Abaissez la pâte en un cercle plus grand que le moule. Couvrez et bordez les pommes avec le rond de pâte, puis mettez au four environ 20 minutes pour faire dorer la pâte. Sortez la tarte et laissez-la reposer environ 15 à 20 minutes avant de la démouler.",
+  "r5.m5": "Remettez le moule directement sur le feu, pendant quelques minutes, pour ramollir le caramel et retournez la tarte sur un plat de service.",
+  "r5.m6": "Servez la tarte Tatin tiède et accompagnez-la de crème fraîche.",
+  "h.var": "Variantes",
+  "r5.var": "Vous pouvez décliner cette recette de plusieurs façons : augmentez la quantité de beurre ou de sucre, employez de la pâte feuilletée au lieu d'une pâte brisée, remplacez les pommes par d'autres fruits (poires, mangues).",
+  "r5.allerg": "Gluten (pâte brisée ou feuilletée) — Lait (beurre 90 g, crème fraîche de service) — aucun autre allergène des 14 majeurs.",
+  "r5.nutri": "Recette entière (pâte 300 g + beurre 90 g + pommes 1,4 kg + sucre 100 g, hors crème fraîche de service) : ~2,982 kcal, ~19 g protéines, ~405 g glucides, ~148 g lipides — soit par portion (6 pers.) environ 497 kcal, 3 g protéines, 68 g glucides, 25 g lipides.",
+  "r5.diet": "Végétarien, Halal et Casher.",
+  "r5.extra": "Variantes (poires, mangues, plus de beurre/sucre, pâte feuilletée) : mêmes allergènes et régime, valeurs nutritionnelles ajustées selon le fruit et les quantités.",
+  "r5.origin": "Sologne",
+  "r6.title": "Tarte aux fraises du Ritz",
+  "r6.meta0": "Pour 6 personnes",
+  "r6.meta1": "Préparation : 25 minutes",
+  "r6.meta2": "Cuisson : 15 minutes",
+  "r6.i0": "250 g de fraises coupées en 3 dans la longueur",
+  "r6.i1": "50 g de gelée de groseilles et de framboises",
+  "r6.i2": "5 cl de kirsch",
+  "r6.i3": "Un œuf battu",
+  "r6.i4": "250 g de crème pâtissière parfumée au kirsch",
+  "r6.i5": "(ou 250 g de crème Chantilly parfumée au sucre vanillé)",
+  "r6.i6": "300 g de pâtes sablées",
+  "r6.i7": "Menthe, verveine, fleur d'acacia pour la décoration",
+  "r6.u0": "Un moule à tarte",
+  "r6.u1": "Un rouleau à pâtisserie",
+  "r6.u2": "Du papier sulfurisé",
+  "r6.u3": "Une cuillère ou spatule",
+  "r6.u4": "Une grille de refroidissement",
+  "r6.u5": "Un bol pour la gelée",
+  "r6.m0": "Préchauffer le four à 180 °C. Abaissez la pâte, foncez le moule à tarte. Recouvrez la pâte de papier sulfurisé puis étalez une bonne couche de haricots secs pour l'empêcher de lever. Pincez les bords de la pâte et faites-la cuire à blanc pendant 10 minutes. Retirer le papier sulfurisé et les haricots secs. Dorez le fond de tarte à l'œuf et remettez au four 5 minutes.",
+  "r6.m1": "Décerclez la pâte et laissez-la refroidir sur une grille.",
+  "r6.m2": "Dans une casserole, faites fondre la gelée de groseilles et de framboises puis laissez-la tiédir. Ajoutez alors le kirsch.",
+  "r6.m3": "Quand la pâte est froide, nappez le fond d'une couche de crème pâtissière ou de crème Chantilly. Disposer les fraises en cercles concentriques en commençant par l'extérieur. Recouvrez-les avec la gelée. Décorez avec la menthe ou la verveine ciselée ou les fleurs d'acacia.",
+  "r6.allerg": "Gluten (pâte sablée) — Lait (beurre pâte, crème pâtissière) — Œufs (dorure, crème pâtissière) — Sulfites/Alcool (kirsch) — aucun autre allergène des 14 majeurs.",
+  "r6.nutri": "Recette entière (fraises 250 g + gelée 50 g + kirsch 50 ml + crème pâtissière 250 g + pâte sablée 300 g + œuf dorure) : ~2,250 kcal, ~26 g protéines, ~143 g glucides, ~129 g lipides — soit par portion (6 pers.) environ 375 kcal, 4 g protéines, 24 g glucides, 21 g lipides.",
+  "r6.diet": "Végétarien et Casher selon certifications du kirsch.",
+  "r6.origin": "France",
+  "back": "&larr; Retour à La Brélie",
+  "foot.link": "&larr; Retour à La Brélie",
+  "page.title": "Six recettes du livre",
+  "page.intro": "Un premier aperçu de <em>Recettes de Famille et Saveurs du Monde</em> — six plats venus de quatre cuisines, du cahier de Mami Belfort à une amitié libanaise.",
+  "disclaimer": "Les valeurs nutritionnelles sont des estimations générées par IA à partir des listes d'ingrédients. Elles sont données à titre indicatif et ne sauraient être utilisées à des fins médicales ou thérapeutiques. Vérifiez toujours les ingrédients au regard de vos allergies et de vos besoins alimentaires.",
+  "footer.copy": "© 2026 La Brélie — Tous droits réservés."
+};
+
+  var i18nEls  = document.querySelectorAll("[data-i18n]");
+  var i18nAlts = document.querySelectorAll("[data-i18n-alt]");
+  i18nEls.forEach(function (el)  { el.setAttribute("data-en", el.innerHTML); });
+  i18nAlts.forEach(function (el) { el.setAttribute("data-en-alt", el.getAttribute("alt")); });
+
+  function applyLang(lang) {
+    document.documentElement.lang = lang;
+    i18nEls.forEach(function (el) {
+      var key = el.getAttribute("data-i18n");
+      el.innerHTML = (lang === "fr" && FR[key] !== undefined) ? FR[key] : el.getAttribute("data-en");
+    });
+    i18nAlts.forEach(function (el) {
+      var key = el.getAttribute("data-i18n-alt");
+      el.setAttribute("alt", (lang === "fr" && FR[key] !== undefined) ? FR[key] : el.getAttribute("data-en-alt"));
+    });
+    document.querySelectorAll(".lang-switch button").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false");
+    });
+    document.title = (lang === "fr" ? "Six recettes du livre" : "Six recipes from the book") + " — La Brélie";
+    var close = document.getElementById("lightbox-close");
+    if (close) close.setAttribute("aria-label", lang === "fr" ? "Fermer" : "Close");
+  }
+
+  function rememberLang(lang) {
+    try { localStorage.setItem("labrelie_lang", lang); } catch (e) {}
+    return lang;
+  }
+
+  function pickInitialLang() {
+    var q = "";
+    try { q = (new URLSearchParams(window.location.search).get("lang") || "").toLowerCase(); } catch (e) {}
+    if (q.indexOf("fr") === 0) return rememberLang("fr");
+    if (q.indexOf("en") === 0) return rememberLang("en");
+    try {
+      var saved = localStorage.getItem("labrelie_lang");
+      if (saved === "fr" || saved === "en") return saved;
+    } catch (e) {}
+    return ((navigator.language || "en").toLowerCase().indexOf("fr") === 0) ? "fr" : "en";
+  }
+
+  document.querySelectorAll(".lang-switch button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      applyLang(rememberLang(b.getAttribute("data-lang")));
+    });
+  });
+  applyLang(pickInitialLang());
+
+  // ---------- Open and close a recipe ----------
+  document.querySelectorAll(".recipe-toggle").forEach(function (btn) {
+    var panel = document.getElementById(btn.getAttribute("aria-controls"));
+    var sign  = btn.querySelector(".recipe-sign");
+    btn.addEventListener("click", function () {
+      var open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", open ? "false" : "true");
+      panel.hidden = open;
+      sign.textContent = open ? "+" : "\u2013";
+    });
+  });
+
+  // A link such as recipes.html#tatin opens that recipe straight away.
+  (function () {
+    var id = (window.location.hash || "").slice(1);
+    if (!id) return;
+    var btn = document.querySelector('.recipe-toggle[aria-controls="' + id + '-panel"]');
+    if (btn && btn.getAttribute("aria-expanded") !== "true") btn.click();
+  })();
+
+  // ---------- Photo lightbox ----------
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = document.getElementById("lightbox-img");
+  var lightboxCaption = document.getElementById("lightbox-caption");
+
+  function txt(el) { return el ? el.textContent.trim() : ""; }
+
+  function openLightbox(src, alt, eyebrow, title) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || "";
+    lightboxCaption.innerHTML = "";
+    if (eyebrow) {
+      var e = document.createElement("span");
+      e.className = "lb-eyebrow"; e.textContent = eyebrow;
+      lightboxCaption.appendChild(e);
+    }
+    if (title) {
+      var tt = document.createElement("span");
+      tt.className = "lb-title"; tt.textContent = title;
+      lightboxCaption.appendChild(tt);
+    }
+    lightbox.classList.add("open");
+  }
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    lightboxImg.src = "";
+  }
+
+  document.querySelectorAll(".recipe-photo").forEach(function (box) {
+    var img = box.querySelector("img");
+    if (!img) return;
+    box.addEventListener("click", function () {
+      var card = box.closest(".recipe");
+      openLightbox(img.src, img.alt,
+        txt(card && card.querySelector(".recipe-origin")),
+        txt(card && card.querySelector(".recipe-name")));
+    });
+  });
+
+  document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", function (e) {
+    if (e.target !== lightboxImg) closeLightbox();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeLightbox();
+  });
+</script>
+
+</body>
+</html>
