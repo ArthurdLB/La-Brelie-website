@@ -32,6 +32,7 @@
 
   .hero { padding: 56px 24px 0; }
   .hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 56px; align-items: center; }
+  .hero h1 .tl { display: block; white-space: nowrap; }
   .hero h1 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(38px, 5vw, 58px); line-height: 1.08; letter-spacing: -.01em; margin: 0 0 8px; color: #24282F; }
   .hero .subtitle { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(17px, 2.2vw, 24px); line-height: 1.2; color: #6B7280; margin: 0 0 20px; }
   .hero p.desc { font-size: 17px; line-height: 1.65; color: #4B5563; max-width: 46ch; margin: 0 0 34px; }
@@ -154,8 +155,8 @@
   <section id="livre" class="hero wrap">
     <div class="hero-grid">
       <div>
-        <h1>Recettes de Famille<br>et Saveurs du Monde</h1>
-        <p class="subtitle">Family Recipes and Flavours of the World</p>
+        <h1 data-i18n="hero.title"><span class="tl">Family Recipes and</span><span class="tl">Flavours of the World</span></h1>
+        <p class="subtitle" data-i18n="hero.sub">Recettes de Famille et Saveurs du Monde</p>
         <p class="desc" data-i18n="hero.desc">A culinary heritage book. Discover <strong style="font-weight:600;color:#24282F;">365 tested recipes</strong> by Thierry and Arthur, brought to life by the intelligent app.</p>
         <div class="cta-row">
           <a href="#" class="btn-primary" data-i18n="hero.buy">Buy the Book</a>
@@ -399,9 +400,9 @@
 
   // ---------- Language: English / French ----------
   // The English text lives in the page itself; the French is below.
-  // The main title (French line + English line) is intentionally not
-  // translated, so it stays identical in both languages.
   var FR = {
+  "hero.title": "<span class=\"tl\">Recettes de Famille</span><span class=\"tl\">et Saveurs du Monde</span>",
+  "hero.sub": "Family Recipes and Flavours of the World",
   "nav.book": "Le livre",
   "nav.gallery": "Galerie",
   "nav.stories": "Histoires",
@@ -489,6 +490,7 @@
     });
     var close = document.getElementById("lightbox-close");
     if (close) close.setAttribute("aria-label", lang === "fr" ? "Fermer" : "Close");
+    fitHeroTitle();
 
     // Links that have a French version (the legal pages).
     document.querySelectorAll("[data-href-fr]").forEach(function (a) {
@@ -538,6 +540,28 @@
       if (u) { var img = new Image(); img.src = u; }
     });
   })();
+
+  // ---------- Keep the main title on exactly two lines ----------
+  // Each half is set not to wrap, so the title is always two lines. If a half
+  // is wider than its column (the English wording is longer), the size eases
+  // down only as far as it needs to; French normally stays at full size.
+  function fitHeroTitle() {
+    var h = document.querySelector(".hero h1");
+    if (!h) return;
+    h.style.fontSize = "";
+    var lines = h.querySelectorAll(".tl");
+    if (!lines.length) return;
+    var full = parseFloat(getComputedStyle(h).fontSize);
+    var avail = h.getBoundingClientRect().width;
+    var widest = 0;
+    lines.forEach(function (el) { widest = Math.max(widest, el.scrollWidth); });
+    if (widest > avail && widest > 0) {
+      h.style.fontSize = Math.max(30, Math.floor(full * (avail / widest) * 100) / 100) + "px";
+    }
+  }
+  window.addEventListener("resize", fitHeroTitle);
+  window.addEventListener("load", fitHeroTitle);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHeroTitle);
 
   // Photo lightbox — click any photo to see it full-size, uncropped,
   // with its title on the left.
