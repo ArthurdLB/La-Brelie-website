@@ -101,6 +101,37 @@
     opacity: 0.7;
   }
 
+  .booktitle {
+    margin: 30px 0 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+    font-weight: 500;
+    color: var(--brelie-blue);
+    line-height: 1.45;
+  }
+
+  .booktitle span {
+    display: block;
+    font-size: 0.78em;
+    font-style: italic;
+    opacity: 0.75;
+  }
+
+  .intro {
+    max-width: 560px;
+    margin: 20px auto 0;
+    font-size: 0.92rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--muted);
+  }
+
+  .intro + .intro {
+    margin-top: 12px;
+    font-style: italic;
+    opacity: 0.85;
+  }
+
   .gate {
     margin-top: 36px;
     display: flex;
@@ -195,6 +226,12 @@
       <p class="brand">La Brélie</p>
       <p class="tagline">Coming soon</p>
       <p class="under-construction">Under construction</p>
+
+      <p class="booktitle">Family Recipes and Flavours of the World<span>Recettes de Famille et Saveurs du Monde</span></p>
+
+      <p class="intro">A family heritage cookbook by Thierry and Arthur de La Brélie. 180 recipes, each tested and retested — the foundations of French cooking alongside dishes gathered from Lebanon, Morocco and beyond, with the stories of the kitchens they came from.</p>
+
+      <p class="intro" lang="fr">Un livre de patrimoine culinaire par Thierry et Arthur de La Brélie. 180 recettes, testées et retestées — les fondamentaux de la cuisine française, enrichis de recettes du Liban, du Maroc et d'ailleurs.</p>
 
       <div class="gate">
         <form class="gate-row" id="gate-form" autocomplete="off">
